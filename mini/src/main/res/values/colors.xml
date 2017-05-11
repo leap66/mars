@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 界面颜色 -->
+    <color name="theme">#fa364e</color>
+    <color name="theme_deep">#eb253d</color>
+    <color name="theme_opaque">#bffa364e</color>
+    <color name="key">#ffa83f</color>
+    <color name="home_title_red">#d9fa364d</color>
+    <color name="background">#f5f7f9</color>
+    <color name="transparency">#a6161b23</color>
+    <color name="half_transparency">#7fffffff</color>
+    <color name="full_transparency">#00000000</color>
+    <color name="line">#e5e5e5</color>
+    <color name="link">#495ea3</color>
+    <color name="line_deep">#cccccc</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <!-- 字体颜色 -->
+    <color name="text_white">#ffffff</color>
+    <color name="text_grey">#b0b0b0</color>
+    <color name="text_deep_grey">#666666</color>
+    <color name="text_warm_gray">#808080</color>
+    <color name="text_warm">#888888</color>
+    <color name="text_light_grey">#5f646e</color>
+    <color name="text_light_warm">#999999</color>
+    <color name="text_black">#333333</color>
+    <color name="text_steel">#7c7c96</color>
+    <color name="text_light_yellow">#ff6e17</color>
+    <color name="text_yellow">#f57b12</color>
+    <color name="text_green">#52be59</color>
+
+    <!--dialog-->
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+
+
+    <!-- 统一颜色设置规范 -->
+    <color name="silver">#c5c9d4</color>
+    <color name="silver_two">#d1d4dd</color>
+    <color name="pale_grey">#dcdee5</color>
+    <color name="pale_grey_two">#e8e9ee</color>
+    <color name="pale_grey_three">#f0f1f4</color>
+    <color name="pale_grey_four">#f4f5f7</color>
+
+    <color name="dark">#292c40</color>
+    <color name="battleship_grey">#6a6e79</color>
+    <color name="cool_grey">#a3a6b2</color>
+
+    <color name="coral">#fb4e3c</color>
+    <color name="warm_pink">#f35268</color>
+    <color name="orange_pink">#fe6f60</color>
+    <color name="light_indigo">#9058d4</color>
+    <color name="dark_periwinkle">#736dd8</color>
+    <color name="soft_blue">#6181e6</color>
+    <color name="mango">#fba038</color>
+    <color name="tealish">#1fc6af</color>
+    <color name="black_65">#a6333333</color>
+
+    <color name="btn_select">#60dcdee5</color>
+</resources>

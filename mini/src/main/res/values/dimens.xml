@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- 字体大小 -->
+    <dimen name="title_bar_height">44sp</dimen>
+    <dimen name="default_height">48sp</dimen>
+    <dimen name="huge_title">30sp</dimen>
+    <dimen name="large_title">22sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="small_title">18sp</dimen>
+    <dimen name="huge_text">16sp</dimen>
+    <dimen name="large_text">15sp</dimen>
+    <dimen name="text">14sp</dimen>
+    <dimen name="large_detail">13sp</dimen>
+    <dimen name="detail">12sp</dimen>
+    <dimen name="small_detail">11sp</dimen>
+
+    <!--dialog-->
+    <dimen name="alert_width">290dp</dimen>
+    <dimen name="common_circle_width">3dp</dimen>
+    <dimen name="progress_circle_radius">34dp</dimen>
+</resources>

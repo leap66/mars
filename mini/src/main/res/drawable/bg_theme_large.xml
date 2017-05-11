@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 9度圆角 主题色背景 长方体 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/theme" />
+            <corners android:radius="9dp" />
+            <stroke android:width="1dp" android:color="@color/theme_deep" />
+        </shape>
+    </item>
+</selector>

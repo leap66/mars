@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.leap.mini.mgr.updata.UpdateDialog.Util" />
+
+        <variable
+            name="item"
+            type="com.leap.mini.model.UpdateModel" />
+
+        <variable
+            name="presenter"
+            type="com.leap.mini.mgr.updata.UpdateDialog.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/update_dialog_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="@null"
+                android:scaleType="fitXY"
+                android:src="@mipmap/update_popup_headerbg" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/update_lab"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.format(@string/update_version_lab,item.versionName)}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/small_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{item.description}"
+                    android:textColor="@color/text_warm"
+                    android:textSize="@dimen/huge_text" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View style="@style/divider_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onCancel()}"
+                android:text="@string/update_cancel"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/small_title"
+                android:visibility="@{Util.type(item)?View.GONE:View.VISIBLE}" />
+
+            <View
+                style="@style/divider_line_vertical"
+                android:visibility="@{Util.type(item)?View.GONE:View.VISIBLE}" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onUpData()}"
+                android:text="@string/update_download"
+                android:textColor="@color/theme"
+                android:textSize="@dimen/small_title" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

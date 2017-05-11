@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--搜索View-->
+    <declare-styleable name="SearchBar">
+        <attr name="hint" format="string" />
+        <attr name="limit" format="integer" />
+        <attr name="auto_search" format="boolean" />
+    </declare-styleable>
+</resources>

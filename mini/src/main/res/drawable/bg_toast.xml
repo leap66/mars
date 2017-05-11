@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 3度圆角 灰色背景 长方形 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#bf161b23" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+</selector>

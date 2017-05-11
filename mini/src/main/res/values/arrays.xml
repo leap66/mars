@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="store_type">
+        <item>日用百货</item>
+        <item>五金店</item>
+        <item>服装鞋帽店</item>
+        <item>茶叶店</item>
+        <item>理发店</item>
+        <item>饮品店</item>
+        <item>餐饮店</item>
+        <item>饰品店</item>
+        <item>电动车店</item>
+        <item>家装店</item>
+        <item>床上用品店</item>
+        <item>车饰精品店</item>
+        <item>水果店</item>
+        <item>其他</item>
+    </array>
+</resources>

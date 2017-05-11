@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 9度圆角 关键色背景 长方体 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/key" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+</selector>
