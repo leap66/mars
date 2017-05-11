@@ -1,4 +1,4 @@
-package com.leap.pa;
+package com.leap.mars;
 
 import org.junit.Test;
 

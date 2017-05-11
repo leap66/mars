@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Pa</string>
+    <string name="app_name">Mars</string>
+    <string name="token_expired">登录已过期,请重新登录!</string>
 </resources>

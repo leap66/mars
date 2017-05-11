@@ -1,9 +1,9 @@
-package com.leap.pa.presenter.main;
+package com.leap.mars.presenter.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.leap.pa.R;
+import com.leap.mars.R;
 
 public class MainActivity extends AppCompatActivity {
 

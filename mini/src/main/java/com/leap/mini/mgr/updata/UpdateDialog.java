@@ -3,7 +3,7 @@ package com.leap.mini.mgr.updata;
 import java.io.File;
 
 import com.leap.mini.R;
-import com.leap.mini.SystemUtils;
+import com.leap.mini.util.SystemUtils;
 import com.leap.mini.databinding.DialogUpdateBinding;
 import com.leap.mini.model.UpdateModel;
 

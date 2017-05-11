@@ -3,6 +3,7 @@
     <!-- 字体大小 -->
     <dimen name="title_bar_height">44sp</dimen>
     <dimen name="default_height">48sp</dimen>
+    <dimen name="default_padding">15sp</dimen>
     <dimen name="huge_title">30sp</dimen>
     <dimen name="large_title">22sp</dimen>
     <dimen name="title">20sp</dimen>

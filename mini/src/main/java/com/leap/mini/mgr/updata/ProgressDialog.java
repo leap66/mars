@@ -1,7 +1,7 @@
 package com.leap.mini.mgr.updata;
 
 import com.leap.mini.R;
-import com.leap.mini.SystemUtils;
+import com.leap.mini.util.SystemUtils;
 import com.leap.mini.model.UpdateModel;
 import com.leap.mini.util.ToastUtil;
 

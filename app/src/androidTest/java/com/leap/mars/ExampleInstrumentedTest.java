@@ -1,4 +1,4 @@
-package com.leap.pa;
+package com.leap.mars;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.leap.pa", appContext.getPackageName());
+        assertEquals("com.leap.mars", appContext.getPackageName());
     }
 }

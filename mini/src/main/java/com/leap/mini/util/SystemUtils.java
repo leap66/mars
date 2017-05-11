@@ -1,4 +1,4 @@
-package com.leap.mini;
+package com.leap.mini.util;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
