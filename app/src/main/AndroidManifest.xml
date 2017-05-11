@@ -5,10 +5,10 @@
     <application
         android:name=".MarsApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/check_box_selected"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MainTheme">
         <activity android:name=".presenter.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

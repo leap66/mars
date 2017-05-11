@@ -12,7 +12,7 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="@color/theme"
+                android:endColor="@color/theme_red"
                 android:startColor="@color/text_white" />
 
             <corners android:radius="20dp" />

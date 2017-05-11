@@ -103,7 +103,7 @@
                 android:gravity="center"
                 android:onClick="@{()->presenter.onUpData()}"
                 android:text="@string/update_download"
-                android:textColor="@color/theme"
+                android:textColor="@color/theme_red"
                 android:textSize="@dimen/small_title" />
 
         </LinearLayout>

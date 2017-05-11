@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 界面颜色 -->
-    <color name="theme">#fa364e</color>
+    <color name="theme_red">#fa364e</color>
+    <color name="theme_blue">#4f73e3</color>
     <color name="theme_deep">#eb253d</color>
     <color name="theme_opaque">#bffa364e</color>
     <color name="key">#ffa83f</color>

@@ -36,13 +36,13 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_select"
                 android:gravity="center"
-                android:onClick="@{()->presenter.onType()}"
+                android:onClick="@{()->presenter.onType(0)}"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@mipmap/ic_clear"
+                    android:background="@drawable/main_bg_1"
                     android:contentDescription="@null" />
 
                 <TextView
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/type"
-                    android:textColor="@color/black"
+                    android:textColor="@drawable/main_text_color"
                     android:textSize="@dimen/detail" />
             </LinearLayout>
 
@@ -61,13 +61,13 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_select"
                 android:gravity="center"
-                android:onClick="@{()->presenter.onVoice()}"
+                android:onClick="@{()->presenter.onType(1)}"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@mipmap/ic_clear"
+                    android:background="@drawable/main_bg_1"
                     android:contentDescription="@null" />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/voice"
-                    android:textColor="@color/black"
+                    android:textColor="@drawable/main_text_color"
                     android:textSize="@dimen/detail" />
             </LinearLayout>
 
@@ -86,13 +86,13 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_select"
                 android:gravity="center"
-                android:onClick="@{()->presenter.onControl()}"
+                android:onClick="@{()->presenter.onType(2)}"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@mipmap/ic_clear"
+                    android:background="@drawable/main_bg_1"
                     android:contentDescription="@null" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/control"
-                    android:textColor="@color/black"
+                    android:textColor="@drawable/main_text_color"
                     android:textSize="@dimen/detail" />
             </LinearLayout>
         </LinearLayout>

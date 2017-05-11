@@ -178,7 +178,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/dialog_ok"
-            android:textColor="@color/theme"
+            android:textColor="@color/theme_red"
             android:textSize="18dp" /><!--style="@style/dialog_blue_button"-->
     </LinearLayout>
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.leap.mars.presenter.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import com.leap.mars.R;
 import com.leap.mars.databinding.ActivityMainBinding;
@@ -13,11 +14,13 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 public class MainActivity extends BaseActivity {
   private ActivityMainBinding binding;
   private Context context;
   private List<Fragment> fragmentList;
+  private Stack<View> viewList;
   public static int currentIndex;
 
   @Override
@@ -26,6 +29,7 @@ public class MainActivity extends BaseActivity {
     context = this;
     binding.setPresenter(new Presenter());
     fragmentList = new ArrayList<>();
+    viewList = new Stack<>();
   }
 
   @Override
@@ -35,36 +39,36 @@ public class MainActivity extends BaseActivity {
 
   @Override
   protected void createEventHandlers() {
-    fragmentList.add(new TypeFragment());
-    fragmentList.add(new TypeFragment());
-    fragmentList.add(new TypeFragment());
+    fragmentList.add(0, new TypeFragment());
+    fragmentList.add(1, new TypeFragment());
+    fragmentList.add(2, new TypeFragment());
+    viewList.add(binding.typeLl);
+    viewList.add(binding.voiceLl);
+    viewList.add(binding.controlLl);
     ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
     pagerAdapter.setFragmentList(fragmentList);
     binding.viewPage.setAdapter(pagerAdapter);
+    setCurrentIndex(0);
     binding.viewPage.addOnPageChangeListener(new OnPageChangeListener() {
       @Override
       public void onPageSelected(int position) {
-        currentIndex = position;
-        binding.viewPage.setCurrentItem(currentIndex);
+        setCurrentIndex(position);
       }
     });
   }
 
   public class Presenter {
 
-    public void onType() {
-      currentIndex = 0;
-      binding.viewPage.setCurrentItem(currentIndex);
+    public void onType(int position) {
+      setCurrentIndex(position);
     }
+  }
 
-    public void onVoice() {
-      currentIndex = 1;
-      binding.viewPage.setCurrentItem(currentIndex);
-    }
-
-    public void onControl() {
-      currentIndex = 2;
-      binding.viewPage.setCurrentItem(currentIndex);
-    }
+  private void setCurrentIndex(int position) {
+    currentIndex = position;
+    binding.viewPage.setCurrentItem(currentIndex);
+    for (View view : viewList)
+      view.setSelected(false);
+    viewList.get(currentIndex).setSelected(true);
   }
 }
