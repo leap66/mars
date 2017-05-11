@@ -1,10 +1,11 @@
-package com.leap.mini.util;
+package com.leap.mini.util.adapter;
 
 import java.util.concurrent.TimeUnit;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding.view.RxView;
 import com.leap.mini.R;
+import com.leap.mini.util.IsEmpty;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;

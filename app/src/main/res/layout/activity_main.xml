@@ -1,12 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/default_padding">
+<layout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.main.MainActivity.Presenter" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_page"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <View style="@style/divider_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:background="@color/white"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/type_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_select"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onType()}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@mipmap/ic_clear"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/type"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/detail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/voice_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_select"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onVoice()}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@mipmap/ic_clear"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/voice"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/detail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/control_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_select"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onControl()}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@mipmap/ic_clear"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/control"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/detail" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

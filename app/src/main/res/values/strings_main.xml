@@ -1,0 +1,5 @@
+<resources>
+    <string name="type">文字</string>
+    <string name="voice">语音</string>
+    <string name="control">控制</string>
+</resources>
