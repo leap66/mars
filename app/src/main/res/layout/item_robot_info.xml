@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/tv_item_robot_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:clickable="false"
+        android:text="07-02  02:00"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <com.leap.mars.presenter.auth.ui.CircleImageView
+        android:id="@+id/civ_item_robot_picture"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_item_robot_date"
+        android:layout_margin="5dp"
+        android:clickable="false"
+        android:contentDescription="@null"
+        android:src="@mipmap/ac7" />
+
+    <TextView
+        android:id="@+id/tv_item_robot_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_robot_date"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/civ_item_robot_picture"
+        android:background="@mipmap/chatfrom_bg_normal"
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:text="哈哈...欢迎..哈哈...欢迎..哈哈...欢迎..哈哈...欢迎..." />
+
+</RelativeLayout>

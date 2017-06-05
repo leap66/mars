@@ -1,0 +1,146 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/a09"
+    android:padding="5dp">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_control"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/ll_more_line1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibtn_more_QQ"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_qq"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_weixin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_weixin"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_alipay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_alipay"
+                android:contentDescription="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibtn_more_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_xiangji"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_yuyin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_yuyin"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_interent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_internet3"
+                android:contentDescription="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibtn_more_jisuanqi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_jisuanqi"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_tianqi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_weather"
+                android:contentDescription="@null" />
+
+            <ImageButton
+                android:id="@+id/ibtn_more_rili"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@mipmap/item_rili"
+                android:contentDescription="@null" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_control_recorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="50dp"
+        android:visibility="visible">
+
+        <com.leap.mars.presenter.auth.ui.AudioRecorderButton
+            android:id="@+id/btn_recorder_control"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_recorder_narmal"
+            android:minHeight="10dp"
+            android:padding="5dp"
+            android:text="按住进行语音控制"
+            android:textColor="#0000ff" />
+    </RelativeLayout>
+
+</RelativeLayout>

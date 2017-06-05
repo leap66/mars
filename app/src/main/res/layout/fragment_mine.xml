@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/a09"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_main_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/civ_edit_picture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:src="@mipmap/ac7" />
+
+        <TextView
+            android:id="@+id/tv_edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/civ_edit_picture"
+            android:text="小慕"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bt_edit_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="玩法"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_edit_robot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="个人资料设置"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_edit_personal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="小慕资料设置"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_edit_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="系统设置"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_edit_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="退出"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+</LinearLayout>

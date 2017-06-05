@@ -8,12 +8,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import com.leap.mars.R;
-import com.leap.mars.presenter.main.MainActivity;
 import com.leap.mini.net.network.event.AuthEvent;
 import com.leap.mini.util.ToastUtil;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -144,9 +142,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     // CloudPushMgr.unBindAccount(SessionMgr.getUser().getId());
     // TokenMgr.clear();
     // SessionMgr.clearUser();
-    Intent intent = new Intent(this, MainActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(intent);
+    // Intent intent = new Intent(this, MainActivity.class);
+    // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+    // Intent.FLAG_ACTIVITY_NEW_TASK);
+    // startActivity(intent);
   }
 
   /**

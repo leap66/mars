@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/a09">
+
+    <RelativeLayout
+        android:id="@+id/rl_main_head"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#60f4f6">
+
+        <com.leap.mars.presenter.auth.ui.CircleImageView
+            android:id="@+id/civ_main_edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ac7" />
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="小慕"
+            android:textColor="#333333"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@+id/ll_main_bottom_show"
+        android:layout_below="@+id/rl_main_head" />
+
+    <LinearLayout
+        android:id="@+id/ll_main_bottom_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#62f4f0"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/ibtn_main_bottom_voice"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/yuyin"
+                android:contentDescription="@null" />
+
+            <EditText
+                android:id="@+id/et_main_bottom_info"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:layout_toLeftOf="@+id/btn_main_bottom_send"
+                android:layout_toRightOf="@+id/ibtn_main_bottom_voice"
+                android:background="@mipmap/input"
+                android:gravity="center_vertical"
+                android:hint="请输入聊天信息..."
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_main_bottom_send"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:text="发送"
+                android:textColor="#ff5555"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="#ffffff"
+            android:visibility="gone">
+
+            <com.leap.mars.presenter.auth.ui.AudioRecorderButton
+                android:id="@+id/btn_recorder_control"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/btn_recorder_narmal"
+                android:gravity="center"
+                android:minHeight="10dp"
+                android:padding="5dp"
+                android:text="@string/str_recorder_normal"
+                android:textColor="#929292" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

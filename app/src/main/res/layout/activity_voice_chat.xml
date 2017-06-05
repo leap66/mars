@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/lv_main_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@mipmap/a09"
+        android:divider="@null"
+        android:dividerHeight="10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.leap.mars.presenter.auth.ui.AudioRecorderButton
+            android:id="@+id/btn_recorder"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/btn_recorder_narmal"
+            android:gravity="center"
+            android:minHeight="10dp"
+            android:padding="5dp"
+            android:text="@string/str_recorder_normal"
+            android:textColor="#929292" />
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/tv_item_voice_date_reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="07-02  02:00"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl__item_voice_reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_voice_date_reply" >
+
+        <com.leap.mars.presenter.auth.ui.CircleImageView
+            android:id="@+id/civ_item_voice_head_reply"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/ac7" />
+
+        <TextView
+            android:id="@+id/tv_item_voice_name_reply"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/civ_item_voice_head_reply"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="小慕"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+
+        <FrameLayout
+            android:id="@+id/fl_item_voice_length_reply"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/civ_item_voice_head_reply"
+            android:background="@mipmap/chatfrom_bg_normal" >
+
+            <View
+                android:id="@+id/v_item_voice_case_reply"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="left|center_vertical"
+                android:background="@mipmap/audio_lift" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_item_voice_time_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:layout_toRightOf="@+id/fl_item_voice_length_reply"
+            android:text="1"
+            android:textColor="#777777" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_item_voice_url_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl__item_voice_reply"
+        android:paddingLeft="50dp"
+        android:text="打击打开"
+        android:textColor="#000000"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/view_head_line_reply"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#cccccc" />
+
+</RelativeLayout>
