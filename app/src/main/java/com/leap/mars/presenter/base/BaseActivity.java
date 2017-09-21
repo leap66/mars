@@ -1,27 +1,22 @@
 package com.leap.mars.presenter.base;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import com.leap.mars.R;
-import com.leap.mini.net.network.event.AuthEvent;
-import com.leap.mini.util.ToastUtil;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
+import com.leap.mars.R;
+import com.leap.mini.net.network.event.AuthEvent;
+import com.leap.mini.util.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * 基础 BaseActivity
@@ -36,12 +31,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     initComponent();
-    // 在4.4及其以下的地方，状态栏都是黑色的（没有设置 translucent的情况下），那么文字直接设置成白色就好了
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-      setStatusBarDarkMode(false);
-    } else {
-      setStatusBarDarkMode(isStatusBarTextDark());
-    }
     createEventHandlers();
     loadData(savedInstanceState);
     EventBus.getDefault().register(this);
@@ -146,30 +135,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
     // Intent.FLAG_ACTIVITY_NEW_TASK);
     // startActivity(intent);
-  }
-
-  /**
-   * MIUI StatusBar 文字颜色
-   * 
-   * @param isStatusTextDark
-   *          StatusBar 文字颜色是否为黑色
-   */
-  public void setStatusBarDarkMode(boolean isStatusTextDark) {
-    Class<? extends Window> clazz = getWindow().getClass();
-    try {
-      int darkModeFlag = 0;
-      Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
-      Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
-      darkModeFlag = field.getInt(layoutParams);
-      Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
-      extraFlagField.invoke(getWindow(), isStatusTextDark ? darkModeFlag : 0, darkModeFlag);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public boolean isStatusBarTextDark() {
-    // 默认为白色
-    return false;
   }
 }
