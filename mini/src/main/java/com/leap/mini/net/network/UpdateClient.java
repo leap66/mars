@@ -1,8 +1,5 @@
 package com.leap.mini.net.network;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.leap.mini.net.network.subscriber.ApiException;
@@ -10,6 +7,10 @@ import com.leap.mini.net.network.subscriber.NullOnEmptyConverterFactory;
 import com.leap.mini.net.network.subscriber.TokenExpiredException;
 import com.leap.mini.util.DateUtil;
 import com.leap.mini.util.IsEmpty;
+import com.leap.mini.widget.gsonconverter.GsonConverterFactory;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -18,7 +19,6 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 基础API APP更新客户端
