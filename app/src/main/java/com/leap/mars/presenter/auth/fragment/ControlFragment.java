@@ -13,7 +13,7 @@ import android.view.animation.ScaleAnimation;
 import com.leap.mars.R;
 import com.leap.mars.presenter.auth.activity.ControlActivity;
 import com.leap.mars.presenter.auth.app.MyApplication;
-import com.leap.mars.presenter.auth.ui.CircleImageView;
+import com.leap.mars.widget.CircleImageView;
 
 public class ControlFragment extends Fragment {
 	private CircleImageView civControl;

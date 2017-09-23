@@ -3,6 +3,14 @@
 
     <!--下拉刷新-->
     <declare-styleable name="DefaultRefreshLayout">
+        <attr name="header_bg" format="color" />
+        <attr name="foot_bg" format="color" />
+        <attr name="header_text_color" format="color" />
+        <attr name="foot_text_color" format="color" />
+        <attr name="header_progressBar" format="reference" />
+        <attr name="foot_progressBar" format="reference" />
+        <attr name="header_drawable_bg" format="reference" />
+        <attr name="foot_drawable_bg" format="reference" />
         <attr name="footer" format="boolean" />
         <attr name="header" format="boolean" />
     </declare-styleable>

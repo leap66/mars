@@ -50,4 +50,6 @@
     <string name="network_err_null">获取的数据为空</string>
     <string name="network_err_json">数据解析异常</string>
     <string name="network_err_cast">类型转换失败</string>
+    <string name="date_empty">我们替您找遍了整个星球，还是找不到相关数据</string>
+    <string name="date_error">哎呀，服务器请求失败</string>
 </resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.main.HomeFragment.Presenter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/paleGrey"
+        android:orientation="vertical">
+
+        <com.leap.mars.widget.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:onClick="@{()->presenter.onType(1)}"
+            android:src="@mipmap/ac7"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:onClick="@{()->presenter.onType(2)}"
+                    android:orientation="horizontal">
+
+                    <com.leap.mars.widget.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/ac7"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/home_chat"
+                        android:textColor="@color/charcoalGrey"
+                        android:textSize="@dimen/small_title"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:onClick="@{()->presenter.onType(3)}"
+                    android:orientation="horizontal">
+
+                    <com.leap.mars.widget.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:src="@mipmap/saoyisao"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/home_scan"
+                        android:textColor="@color/charcoalGrey"
+                        android:textSize="@dimen/small_title"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:onClick="@{()->presenter.onType(4)}"
+                    android:orientation="horizontal">
+
+                    <com.leap.mars.widget.CircleImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/yaoyiyao"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/home_rock"
+                        android:textColor="@color/charcoalGrey"
+                        android:textSize="@dimen/small_title"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:onClick="@{()->presenter.onType(6)}"
+                    android:orientation="horizontal">
+
+                    <com.leap.mars.widget.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/nearby_ren"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/home_nearby"
+                        android:textColor="@color/charcoalGrey"
+                        android:textSize="@dimen/small_title"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:onClick="@{()->presenter.onType(6)}"
+                    android:orientation="horizontal">
+
+                    <com.leap.mars.widget.CircleImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/help"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/home_help"
+                        android:textColor="@color/charcoalGrey"
+                        android:textSize="@dimen/small_title"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

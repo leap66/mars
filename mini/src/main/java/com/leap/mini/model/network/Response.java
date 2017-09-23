@@ -1,21 +1,30 @@
-package com.leap.mini.net.network.subscriber;
+package com.leap.mini.model.network;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 网络返回数据类
- * <p>
- * </> Created by weiyaling on 2017/3/7.
+ * @author : ylwei
+ * @time : 2017/9/5
+ * @description :
  */
+public class Response<T> implements Serializable {
+  private Integer code;// 错误码
+  private boolean success;// 结果状态标识
+  private Map<String, String> fields;// 输出参数
+  private List<String> message;// 输出错误信息
+  private T data;// 成功时输出信息
+  private int total;// 总条数
+  private boolean more;// 是否有更多数据
 
-public class Response<T> {
-  private boolean success;
-  private Map<String, String> fields;
-  private List<String> message;
-  private T data;
-  private int total;
-  private boolean more;
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
   public boolean isMore() {
     return more;
@@ -64,4 +73,5 @@ public class Response<T> {
   public void setData(T data) {
     this.data = data;
   }
+
 }

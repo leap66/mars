@@ -14,7 +14,6 @@
     <color name="line">#e5e5e5</color>
     <color name="link">#495ea3</color>
     <color name="line_deep">#cccccc</color>
-    <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <!-- 字体颜色 -->
     <color name="text_white">#ffffff</color>
@@ -37,7 +36,6 @@
 
 
     <!-- 统一颜色设置规范 -->
-    <color name="silver">#c5c9d4</color>
     <color name="silver_two">#d1d4dd</color>
     <color name="pale_grey">#dcdee5</color>
     <color name="pale_grey_two">#e8e9ee</color>
@@ -48,7 +46,6 @@
     <color name="battleship_grey">#6a6e79</color>
     <color name="cool_grey">#a3a6b2</color>
 
-    <color name="coral">#fb4e3c</color>
     <color name="warm_pink">#f35268</color>
     <color name="orange_pink">#fe6f60</color>
     <color name="light_indigo">#9058d4</color>
@@ -59,4 +56,23 @@
     <color name="black_65">#a6333333</color>
 
     <color name="btn_select">#60dcdee5</color>
+
+
+    <!-- v2版本颜色规范 -->
+    <color name="lipstick">#DF2E47</color><!-- 主色，主要用于操作的图标及名称 -->
+    <color name="steel">#838397</color><!-- 主题色-1，主要用于标题栏背景色 -->
+    <color name="white">#FFFFFF</color><!-- 主色，用于填充置于深色背景上的图标或文字 -->
+    <color name="charcoalGrey">#2C3036</color><!-- 主色，主要用于一级文本以及阴影 -->
+    <color name="coolGrey">#979799</color><!-- 次级文本色 -->
+    <color name="silver">#C6C6C8</color><!-- 提示文本色 -->
+    <color name="silverTwo">#DCDDDF</color><!-- 强分割线 -->
+    <color name="silverThree">#EBECEE</color><!-- 弱分割线，默认按钮底色 -->
+    <color name="paleGrey">#F5F5F6</color><!-- 默认背景色，搜索框底色 -->
+    <color name="paleGreyTwo">#FAFAFB</color><!-- 表格斑马行底色 -->
+    <color name="coral">#FA6036</color><!-- 主要用于金额显示 -->
+    <color name="redPink">#EF314c</color><!-- 主题色-2，亮主题色，用于主要按钮填充 -->
+    <color name="frenchBlue">#445DB5</color><!-- 链接色 -->
+    <color name="softBlue">#609FE6</color><!-- 帮助提示信息色 -->
+    <color name="gunmetal">#414958</color><!-- 收款及二维码专用背景色 -->
+
 </resources>

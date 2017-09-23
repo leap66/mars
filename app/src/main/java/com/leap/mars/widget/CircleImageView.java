@@ -1,4 +1,4 @@
-package com.leap.mars.presenter.auth.ui;
+package com.leap.mars.widget;
 
 
 import android.content.Context;

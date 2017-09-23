@@ -1,27 +1,35 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@mipmap/background_juxing"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="20dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/iv_dialog_recorder"
+    <data>
+
+        <variable
+            name="item"
+            type="Boolean"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:contentDescription="@null"
-        android:src="@mipmap/voice1"
-        android:visibility="visible" />
+        android:background="@mipmap/background_juxing"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-    <TextView
-        android:id="@+id/tv_dialog_recorder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:text="手指上滑，取消发送"
-        android:textColor="#ffffff" />
+        <ImageView
+            android:id="@+id/iv_recorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/voice1"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/audio_cancel_hint"
+            android:textColor="@{item?@color/lipstick:@color/white}"/>
+
+    </LinearLayout>
+</layout>

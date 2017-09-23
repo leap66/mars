@@ -12,7 +12,7 @@
         android:textColor="#aaaaaa"
         android:textSize="30sp" />
 
-    <com.leap.mars.presenter.auth.ui.CircleImageView
+    <com.leap.mars.widget.CircleImageView
         android:id="@+id/civ_fragment"
         android:layout_width="200dp"
         android:layout_height="200dp"

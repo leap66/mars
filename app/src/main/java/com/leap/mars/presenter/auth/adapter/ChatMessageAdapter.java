@@ -1,7 +1,5 @@
 package com.leap.mars.presenter.auth.adapter;
 
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
@@ -17,7 +15,9 @@ import com.leap.mars.presenter.auth.activity.PersonalActivity;
 import com.leap.mars.presenter.auth.activity.RobotActivity;
 import com.leap.mars.presenter.auth.app.MyApplication;
 import com.leap.mars.presenter.auth.entity.ItemInfo;
-import com.leap.mars.presenter.auth.ui.CircleImageView;
+import com.leap.mars.widget.CircleImageView;
+
+import java.util.List;
 
 
 public class ChatMessageAdapter extends BaseAdapter {

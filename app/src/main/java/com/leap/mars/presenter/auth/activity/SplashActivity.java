@@ -3,16 +3,17 @@ package com.leap.mars.presenter.auth.activity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.leap.mars.R;
+import com.leap.mars.presenter.auth.app.MyApplication;
+import com.leap.mars.presenter.auth.util.PreferenceNavigation;
+import com.leap.mars.presenter.main.MainActivity;
+
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.leap.mars.R;
-import com.leap.mars.presenter.auth.app.MyApplication;
-import com.leap.mars.presenter.auth.util.PreferenceNavigation;
 
 public class SplashActivity extends Activity {
 	private ImageView ivSplashLoadingItem;

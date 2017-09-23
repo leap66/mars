@@ -1,27 +1,5 @@
 package com.leap.mars.presenter.auth.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.leap.mars.R;
-import com.leap.mars.presenter.auth.adapter.ChatMessageAdapter;
-import com.leap.mars.presenter.auth.app.MyApplication;
-import com.leap.mars.presenter.auth.entity.BaiduReplyText;
-import com.leap.mars.presenter.auth.entity.ChatRecord;
-import com.leap.mars.presenter.auth.entity.ItemInfo;
-import com.leap.mars.presenter.auth.entity.TuLingBackMessage;
-import com.leap.mars.presenter.auth.presenter.RobotPresenter;
-import com.leap.mars.presenter.auth.service.RobotService;
-import com.leap.mars.presenter.auth.ui.AudioRecorderButton;
-import com.leap.mars.presenter.auth.ui.CircleImageView;
-import com.leap.mars.presenter.auth.util.BaiDuCallback;
-import com.leap.mars.presenter.auth.util.Consts;
-import com.leap.mars.presenter.auth.util.JudgeEtInfo;
-import com.leap.mars.presenter.auth.util.UtilBaiduReplyText;
-import com.leap.mars.presenter.auth.util.UtilDate;
-import com.leap.mars.presenter.auth.view.IView;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -43,6 +21,28 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.leap.mars.R;
+import com.leap.mars.presenter.auth.adapter.ChatMessageAdapter;
+import com.leap.mars.presenter.auth.app.MyApplication;
+import com.leap.mars.presenter.auth.entity.BaiduReplyText;
+import com.leap.mars.presenter.auth.entity.ChatRecord;
+import com.leap.mars.presenter.auth.entity.ItemInfo;
+import com.leap.mars.presenter.auth.entity.TuLingBackMessage;
+import com.leap.mars.presenter.auth.presenter.RobotPresenter;
+import com.leap.mars.presenter.auth.service.RobotService;
+import com.leap.mars.presenter.auth.ui.AudioRecorderButton;
+import com.leap.mars.presenter.auth.util.BaiDuCallback;
+import com.leap.mars.presenter.auth.util.Consts;
+import com.leap.mars.presenter.auth.util.JudgeEtInfo;
+import com.leap.mars.presenter.auth.util.UtilBaiduReplyText;
+import com.leap.mars.presenter.auth.util.UtilDate;
+import com.leap.mars.presenter.auth.view.IView;
+import com.leap.mars.widget.CircleImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TextChatActivity extends Activity implements IView, Consts {
 

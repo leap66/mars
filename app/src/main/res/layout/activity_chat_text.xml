@@ -9,7 +9,7 @@
         android:layout_height="35dp"
         android:background="#60f4f6">
 
-        <com.leap.mars.presenter.auth.ui.CircleImageView
+        <com.leap.mars.widget.CircleImageView
             android:id="@+id/civ_main_edit"
             android:layout_width="30dp"
             android:layout_height="30dp"

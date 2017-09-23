@@ -1,13 +1,17 @@
 package com.leap.mini.net;
 
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
+import android.content.Context;
+
+import com.leap.mini.net.network.subscriber.ApiException;
+import com.leap.mini.model.network.Response;
+import com.leap.mini.util.DialogUtil;
+import com.leap.mini.util.IsEmpty;
+import com.leap.mini.widget.sweetAlert.SweetAlertDialog;
 
 import org.json.JSONException;
 
-import com.leap.mini.net.network.subscriber.ApiException;
-import com.leap.mini.net.network.subscriber.Response;
-import com.leap.mini.util.IsEmpty;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 
 /**
  * 网络返回数据解析
@@ -15,7 +19,22 @@ import com.leap.mini.util.IsEmpty;
  * </> Created by weiyaling on 2017/3/7.
  */
 
-public abstract class PureSubscriber<T> extends rx.Subscriber<Response<T>> {
+public abstract class HttpSubscriber<T> extends rx.Subscriber<Response<T>> {
+  private Context context;
+  private SweetAlertDialog dialog;
+
+  public HttpSubscriber(Context context) {
+    this.context = context;
+  }
+
+  @Override
+  public void onStart() {
+    if (!IsEmpty.object(context)) {
+      dialog = DialogUtil.getProgressDialog(context);
+      dialog.show();
+    }
+    super.onStart();
+  }
 
   @Override
   public void onCompleted() {
@@ -26,11 +45,17 @@ public abstract class PureSubscriber<T> extends rx.Subscriber<Response<T>> {
 
   @Override
   public void onError(Throwable throwable) {
+    if (!IsEmpty.object(dialog) && dialog.isShowing()) {
+      dialog.dismiss();
+    }
     onFailure(parseException(throwable), null);
   }
 
   @Override
   public void onNext(Response<T> t) {
+    if (!IsEmpty.object(dialog) && dialog.isShowing()) {
+      dialog.dismiss();
+    }
     if (IsEmpty.object(t)) {
       // 短信或阅读消息时response可能为null
       onSuccess(null);

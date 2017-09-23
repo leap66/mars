@@ -31,6 +31,27 @@
     </style>
 
     <!--分割线-->
+    <style name="divider_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/silverTwo</item>
+    </style>
+
+    <!--分割线-->
+    <style name="divider_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/silverThree</item>
+    </style>
+
+    <!--白色背景色-->
+    <style name="immersion_bar_white_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--分割线-->
     <style name="divider_line">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>

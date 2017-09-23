@@ -1,8 +1,5 @@
 package com.leap.mini.util;
 
-import com.leap.mini.R;
-import com.leap.mini.databinding.ItemToastBinding;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
@@ -10,6 +7,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+
+import com.leap.mini.R;
+import com.leap.mini.databinding.ItemToastBinding;
 
 /**
  * Toast 格式化工具
@@ -48,9 +48,9 @@ public class ToastUtil {
   }
 
   private static void showToast(Context context, String text, int imageResource) {
-    ItemToastBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context),
-        R.layout.item_toast, null, false);
-    Toast toast = new Toast(context);
+    ItemToastBinding binding = DataBindingUtil.inflate(
+        LayoutInflater.from(context.getApplicationContext()), R.layout.item_toast, null, false);
+    Toast toast = new Toast(context.getApplicationContext());
     toast.setDuration(Toast.LENGTH_SHORT);
     toast.setGravity(Gravity.CENTER, 0, 0);
     if (0 == imageResource) {

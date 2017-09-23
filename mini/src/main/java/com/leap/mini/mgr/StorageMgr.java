@@ -1,12 +1,9 @@
 package com.leap.mini.mgr;
 
-import com.leap.mini.model.BSessionShop;
-import com.leap.mini.model.BSessionUser;
-import com.leap.mini.util.GsonUtil;
-import com.leap.mini.util.IsEmpty;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.leap.mini.util.GsonUtil;
 
 /**
  * 缓存 管理器
@@ -17,10 +14,7 @@ public class StorageMgr {
 
   private static SharedPreferences storage;
   public static String LEVEL_USER = "user";// 用户级别（必需登录后使用）
-  public static String LEVEL_SHOP = "shop";// 门店级别缓存（必需选择门店后使用）（默认级别）
   public static String LEVEL_GLOBAL = "global";// 全局级别
-  private static BSessionUser user;
-  private static BSessionShop shop;
 
   public static void init(Context context) {
     storage = context.getSharedPreferences("mini", Context.MODE_PRIVATE);
@@ -43,7 +37,7 @@ public class StorageMgr {
    *          缓存的类
    */
   public static <T> void set(String key, T t) throws RuntimeException {
-    set(key, GsonUtil.toJson(t), StorageMgr.LEVEL_SHOP);
+    set(key, GsonUtil.toJson(t), StorageMgr.LEVEL_USER);
   }
 
   /**
@@ -69,7 +63,7 @@ public class StorageMgr {
    *          字符串
    */
   public static void set(String key, String value) throws RuntimeException {
-    set(key, value, StorageMgr.LEVEL_SHOP);
+    set(key, value, StorageMgr.LEVEL_USER);
   }
 
   /**
@@ -84,16 +78,7 @@ public class StorageMgr {
    */
   public static void set(String key, String value, String level) throws RuntimeException {
     String k = "";
-    if (level.equals(StorageMgr.LEVEL_USER) || level.equals(StorageMgr.LEVEL_SHOP)) {
-      if (!IsEmpty.object(user)) {
-        k += user.getId();
-      }
-      k += "_";
-    }
-    if (level.equals(StorageMgr.LEVEL_SHOP)) {
-      if (!IsEmpty.object(shop)) {
-        k += shop.getId();
-      }
+    if (level.equals(StorageMgr.LEVEL_USER)) {
       k += "_";
     }
     k += key;
@@ -114,7 +99,7 @@ public class StorageMgr {
    *          需要序列化的类
    */
   public static <T> T get(String key, Class<T> c) {
-    String value = get(key, StorageMgr.LEVEL_SHOP);
+    String value = get(key, StorageMgr.LEVEL_USER);
     if (value == null) {
       return null;
     }
@@ -146,7 +131,7 @@ public class StorageMgr {
    *          键值
    */
   public static String get(String key) {
-    return get(key, StorageMgr.LEVEL_SHOP);
+    return get(key, StorageMgr.LEVEL_USER);
   }
 
   /**
@@ -159,16 +144,7 @@ public class StorageMgr {
    */
   public static String get(String key, String level) {
     String k = "";
-    if (level.equals(StorageMgr.LEVEL_USER) || level.equals(StorageMgr.LEVEL_SHOP)) {
-      if (!IsEmpty.object(user)) {
-        k += user.getId();
-      }
-      k += "_";
-    }
-    if (level.equals(StorageMgr.LEVEL_SHOP)) {
-      if (!IsEmpty.object(shop)) {
-        k += shop.getId();
-      }
+    if (level.equals(StorageMgr.LEVEL_USER)) {
       k += "_";
     }
     k += key;

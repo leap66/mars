@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#eeeeee" >
 
-    <com.leap.mars.presenter.auth.ui.CircleImageView
+    <com.leap.mars.widget.CircleImageView
         android:id="@+id/civ_text_chat_head"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -30,7 +30,7 @@
                 android:background="#ffffff"
                 android:orientation="horizontal" >
 
-                <com.leap.mars.presenter.auth.ui.CircleImageView
+                <com.leap.mars.widget.CircleImageView
                     android:id="@+id/civ_text_chat_head_item"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -60,7 +60,7 @@
                 android:background="#ffffff"
                 android:orientation="horizontal" >
 
-                <com.leap.mars.presenter.auth.ui.CircleImageView
+                <com.leap.mars.widget.CircleImageView
                     android:id="@+id/civ_saoyisao_item"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -90,7 +90,7 @@
                 android:background="#ffffff"
                 android:orientation="horizontal" >
 
-                <com.leap.mars.presenter.auth.ui.CircleImageView
+                <com.leap.mars.widget.CircleImageView
                     android:id="@+id/civ_yaoyiyao_item"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -120,7 +120,7 @@
                 android:background="#ffffff"
                 android:orientation="horizontal" >
 
-                <com.leap.mars.presenter.auth.ui.CircleImageView
+                <com.leap.mars.widget.CircleImageView
                     android:id="@+id/civ_nearby_item"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -149,7 +149,7 @@
                 android:background="#ffffff"
                 android:orientation="horizontal" >
 
-                <com.leap.mars.presenter.auth.ui.CircleImageView
+                <com.leap.mars.widget.CircleImageView
                     android:id="@+id/civ_help_item"
                     android:layout_width="35dp"
                     android:layout_height="35dp"

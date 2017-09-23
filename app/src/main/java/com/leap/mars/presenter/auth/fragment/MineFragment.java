@@ -12,11 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.leap.mars.R;
-import com.leap.mars.presenter.auth.activity.MainActivity;
 import com.leap.mars.presenter.auth.activity.NavigationActivity;
 import com.leap.mars.presenter.auth.activity.PersonalActivity;
 import com.leap.mars.presenter.auth.activity.RobotActivity;
 import com.leap.mars.presenter.auth.app.MyApplication;
+import com.leap.mars.presenter.main.MainActivity;
 
 public class MineFragment extends Fragment {
 

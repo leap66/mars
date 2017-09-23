@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.leap.mars.R;
 import com.leap.mini.net.network.event.AuthEvent;
 import com.leap.mini.util.ToastUtil;
@@ -25,15 +26,40 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public abstract class BaseActivity extends AppCompatActivity {
   private boolean keyboardAutoHide = true;
-
+  protected ImmersionBar mStatusBar;
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     initComponent();
-    createEventHandlers();
     loadData(savedInstanceState);
+    createEventHandlers();
     EventBus.getDefault().register(this);
+    if (useStatusBar())
+      initStatusBar();
+  }
+
+  protected void initStatusBar() {
+    mStatusBar = ImmersionBar.with(this);
+    if (statusBarView() != null) {
+      mStatusBar.statusBarView(statusBarView());
+    }
+    if (isDarkFont()) {
+      mStatusBar.statusBarDarkFont(true, 0.2f);
+    }
+    mStatusBar.init();
+  }
+
+  protected boolean useStatusBar() {
+    return true;
+  }
+
+  protected View statusBarView() {
+    return null;
+  }
+
+  protected boolean isDarkFont() {
+    return false;
   }
 
   /**

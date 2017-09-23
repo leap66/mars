@@ -1,7 +1,10 @@
 <resources>
-    <string name="type">文字</string>
-    <string name="voice">语音</string>
-    <string name="control">控制</string>
+    <string name="main_type">文字</string>
+    <string name="main_voice">语音</string>
+    <string name="main_control">控制</string>
+    <string name="main_my">我的</string>
+    <string name="main_again_exit">再点一次退出程序</string>
+    <string name="main_name">小幕</string>
 
     <color name="RED">#ff0000</color>
     <color name="BLACK">#ffffff</color>
@@ -10,4 +13,18 @@
     <string name="str_recorder_normal">按住说话</string>
     <string name="str_recorder_recording">松开结束</string>
     <string name="str_recorder_want_cancel">松开手指，取消发送</string>
+
+    <!-- 首页 -->
+    <string name="home_chat">聊天</string>
+    <string name="home_scan">扫一扫</string>
+    <string name="home_rock">摇一摇</string>
+    <string name="home_nearby">附近的人</string>
+    <string name="home_help">帮助</string>
+
+    <!-- 文字聊天 -->
+    <string name="chat_type_hint">请输入聊天信息···</string>
+    <string name="chat_type_send">发送</string>
+    <string name="chat_type_info_default">你好啊,需要什么帮助吗？</string>
+    <string name="chat_type_voice_len">{0} \'\'</string>
+
 </resources>

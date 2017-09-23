@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.leap.mars.model.Dialogue"/>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.chat.ChatTypeActivity.Presenter"/>
+
+        <import type="com.leap.mini.util.DateUtil"/>
+
+        <import type="com.leap.mini.util.StringUtil"/>
+
+        <import type="com.leap.mini.util.IsEmpty"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:text="@{DateUtil.format(item.time,DateUtil.DEFAULT_DATE_FORMAT)}"
+            android:textColor="@color/coolGrey"
+            android:textSize="@dimen/detail"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:visibility="@{item.ask?View.GONE:View.VISIBLE}">
+
+            <com.leap.mars.widget.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ac7"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="@{IsEmpty.string(item.voiceName)?View.GONE:View.VISIBLE}">
+
+                <LinearLayout
+                    android:id="@+id/ll_voice_len"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/chatfrom_bg_normal"
+                    android:onClick="@{()->presenter.onPlay(item.voiceName)}">
+
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="start|center_vertical"
+                        android:background="@mipmap/audio_lift"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-10dp"
+                    android:hint="@string/chat_type_voice_len"
+                    android:text="@{StringUtil.format(@string/chat_type_voice_len,item.voiceLen/1000+1)}"
+                    android:textColor="@color/coolGrey"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:autoLink="all"
+                android:background="@mipmap/chatfrom_bg_normal"
+                android:gravity="center_vertical|start"
+                android:text='@{item.info+(IsEmpty.string(item.url)?"":("\n"+item.url))}'
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/text"
+                android:visibility="@{IsEmpty.string(item.voiceName)?View.VISIBLE:View.GONE}"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="5dp"
+            android:visibility="@{item.ask?View.VISIBLE:View.GONE}">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="@{IsEmpty.string(item.voiceName)?View.GONE:View.VISIBLE}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="-10dp"
+                    android:hint="@string/chat_type_voice_len"
+                    android:text="@{StringUtil.format(@string/chat_type_voice_len,item.voiceLen/1000+1)}"
+                    android:textColor="@color/coolGrey"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_voice_len_input"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/chatto_bg_normal"
+                    android:gravity="end|center_vertical"
+                    android:onClick="@{()->presenter.onPlay(item.voiceName)}">
+
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/audio_right"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:autoLink="all"
+                android:background="@mipmap/chatto_bg_normal"
+                android:gravity="center_vertical|end"
+                android:text='@{item.info+(IsEmpty.string(item.url)?"":("\n"+item.url))}'
+                android:textColor="@color/charcoalGrey"
+                android:textColorLink="@color/frenchBlue"
+                android:textSize="@dimen/text"
+                android:visibility="@{IsEmpty.string(item.voiceName)?View.VISIBLE:View.GONE}"/>
+
+            <com.leap.mars.widget.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ac6"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

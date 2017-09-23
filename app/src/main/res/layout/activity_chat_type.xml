@@ -1,0 +1,154 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="normal"
+            type="Boolean"/>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.chat.ChatTypeActivity.Presenter"/>
+
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"
+            android:background="@color/softBlue"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:background="@color/softBlue"
+            android:gravity="center_vertical">
+
+            <com.leap.mars.widget.CircleImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@null"
+                android:onClick="@{()->presenter.onBack()}"
+                android:src="@mipmap/ac7"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/main_name"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+
+            <com.leap.mini.widget.pullrefresh.DefaultRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_above="@+id/ll_send"
+                android:layout_below="@+id/space"
+                app:header_drawable_bg="@mipmap/a09">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/home_rcy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:adapter="@{adapter}"
+                    app:layoutManager="LinearLayoutManager"/>
+            </com.leap.mini.widget.pullrefresh.DefaultRefreshLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/paleGrey"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:paddingTop="-20dp">
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/et_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:hint="@string/chat_type_hint"
+                    android:lines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/paleGrey">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@mipmap/voice_chat_0"
+                        android:contentDescription="@null"
+                        android:onClick="@{()->presenter.onVoice()}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="-10dp"
+                    android:gravity="center"
+                    android:visibility="@{normal?View.GONE:View.VISIBLE}">
+
+                    <com.leap.mars.widget.audio.AudioRecorderButton
+                        android:id="@+id/btn_recorder"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/btn_recorder_narmal"
+                        android:drawableTop="@mipmap/voice_chat_0"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="@string/str_recorder_normal"
+                        android:textColor="@color/lipstick"
+                        android:textCursorDrawable="@mipmap/voice_chat_0"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

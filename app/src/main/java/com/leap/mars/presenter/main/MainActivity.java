@@ -1,74 +1,102 @@
-//package com.leap.mars.presenter.main;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Stack;
-//
-//import com.leap.mars.R;
-//import com.leap.mars.databinding.ActivityMainBinding;
-//import com.leap.mars.presenter.base.BaseActivity;
-//import com.leap.mini.util.adapter.ViewPagerAdapter;
-//import com.leap.mini.util.listener.OnPageChangeListener;
-//
-//import android.content.Context;
-//import android.databinding.DataBindingUtil;
-//import android.os.Bundle;
-//import android.support.v4.app.Fragment;
-//import android.view.View;
-//
-//public class MainActivity extends BaseActivity {
-//  private ActivityMainBinding binding;
-//  private Context context;
-//  private List<Fragment> fragmentList;
-//  private Stack<View> viewList;
-//  public static int currentIndex;
-//
-//  @Override
-//  protected void initComponent() {
-//    binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//    context = this;
-//    binding.setPresenter(new Presenter());
-//    fragmentList = new ArrayList<>();
-//    viewList = new Stack<>();
-//  }
-//
-//  @Override
-//  protected void loadData(Bundle savedInstanceState) {
-//
-//  }
-//
-//  @Override
-//  protected void createEventHandlers() {
-//    fragmentList.add(0, new TypeFragment());
-//    fragmentList.add(1, new TypeFragment());
-//    fragmentList.add(2, new TypeFragment());
-//    viewList.add(binding.typeLl);
-//    viewList.add(binding.voiceLl);
-//    viewList.add(binding.controlLl);
-//    ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//    pagerAdapter.setFragmentList(fragmentList);
-//    binding.viewPage.setAdapter(pagerAdapter);
-//    setCurrentIndex(0);
-//    binding.viewPage.addOnPageChangeListener(new OnPageChangeListener() {
-//      @Override
-//      public void onPageSelected(int position) {
-//        setCurrentIndex(position);
-//      }
-//    });
-//  }
-//
-//  public class Presenter {
-//
-//    public void onType(int position) {
-//      setCurrentIndex(position);
-//    }
-//  }
-//
-//  private void setCurrentIndex(int position) {
-//    currentIndex = position;
-//    binding.viewPage.setCurrentItem(currentIndex);
-//    for (View view : viewList)
-//      view.setSelected(false);
-//    viewList.get(currentIndex).setSelected(true);
-//  }
-//}
+package com.leap.mars.presenter.main;
+
+import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
+import android.view.View;
+
+import com.leap.mars.R;
+import com.leap.mars.databinding.ActivityMainBinding;
+import com.leap.mars.presenter.auth.fragment.ControlFragment;
+import com.leap.mars.presenter.auth.fragment.MineFragment;
+import com.leap.mars.presenter.base.BaseActivity;
+import com.leap.mini.util.ExitHelper;
+import com.leap.mini.util.ToastUtil;
+import com.leap.mini.util.adapter.ViewPagerAdapter;
+import com.leap.mini.util.listener.OnPageChangeListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class MainActivity extends BaseActivity {
+  private ActivityMainBinding binding;
+  private List<Fragment> fragmentList;
+  private Stack<View> viewList;
+  public int currentIndex;
+  private ExitHelper.TwicePressHolder mExitHelper;
+  private Context context;
+
+  @Override
+  protected void initComponent() {
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    binding.setPresenter(new Presenter());
+    context = this;
+    fragmentList = new ArrayList<>();
+    viewList = new Stack<>();
+  }
+
+  @Override
+  protected void loadData(Bundle savedInstanceState) {
+   fragmentList.add(new HomeFragment());
+    fragmentList.add(new HomeFragment());
+    fragmentList.add(new HomeFragment());
+    fragmentList.add(new HomeFragment());
+    viewList.add(binding.rbType);
+    viewList.add(binding.rbVoice);
+    viewList.add(binding.rbControl);
+    viewList.add(binding.rbMine);
+  }
+
+  @Override
+  protected View statusBarView() {
+    return binding.immersionBar;
+  }
+
+  @Override
+  protected void createEventHandlers() {
+    ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+    pagerAdapter.setFragmentList(fragmentList);
+    binding.viewPager.setAdapter(pagerAdapter);
+    setCurrentIndex(0);
+    binding.viewPager.addOnPageChangeListener(new OnPageChangeListener() {
+      @Override
+      public void onPageSelected(int position) {
+        setCurrentIndex(position);
+      }
+    });
+    mExitHelper = new ExitHelper.TwicePressHolder(new ExitHelper.IExitInterface() {
+      @Override
+      public void showExitTip() {
+        ToastUtil.showHint(context, R.string.main_again_exit);
+      }
+
+      @Override
+      public void exit() {
+        onBackPressed();
+      }
+    }, 3000);
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    return mExitHelper.onKeyDown(keyCode, event);
+  }
+
+  public class Presenter {
+
+    public void onType(int position) {
+      setCurrentIndex(position);
+    }
+  }
+
+  private void setCurrentIndex(int position) {
+    currentIndex = position;
+    binding.viewPager.setCurrentItem(currentIndex);
+    for (View view : viewList)
+      view.setSelected(false);
+    viewList.get(currentIndex).setSelected(true);
+  }
+}

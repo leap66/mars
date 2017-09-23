@@ -1,8 +1,5 @@
 package com.leap.mars.presenter.auth.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.leap.mars.R;
+import com.leap.mars.presenter.main.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NavigationActivity extends Activity{
 	

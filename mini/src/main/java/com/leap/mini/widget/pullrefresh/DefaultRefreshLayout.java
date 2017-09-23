@@ -1,17 +1,11 @@
 package com.leap.mini.widget.pullrefresh;
 
-import com.leap.mini.R;
-import com.leap.mini.widget.pullrefresh.base.layout.BaseFooterView;
-import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
-import com.leap.mini.widget.pullrefresh.base.layout.PullRefreshLayout;
-import com.leap.mini.widget.pullrefresh.base.support.impl.Loadable;
-import com.leap.mini.widget.pullrefresh.base.support.impl.Refreshable;
-import com.leap.mini.widget.pullrefresh.base.support.utils.CanPullUtil;
-
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -24,10 +18,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.leap.mini.R;
+import com.leap.mini.widget.pullrefresh.base.layout.BaseFooterView;
+import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
+import com.leap.mini.widget.pullrefresh.base.layout.PullRefreshLayout;
+import com.leap.mini.widget.pullrefresh.base.support.impl.Loadable;
+import com.leap.mini.widget.pullrefresh.base.support.impl.Refreshable;
+import com.leap.mini.widget.pullrefresh.base.support.utils.CanPullUtil;
 
 /**
  * 定义了下拉刷新和上推加载
@@ -35,12 +38,19 @@ import android.widget.TextView;
 public class DefaultRefreshLayout extends PullRefreshLayout {
 
   private DefaultPullLayout mCenterViewContainer;
+  private View mEmptyView;
+  private View mErrorView;
   private View contentView;
   private int headerIndex = -1;
   private int footerIndex = -1;
   private boolean immediately = true;
-  private ProgressBar progressBarRefresh;
-  private TextView loadingRefreshText;
+  private ImageView emptyImg;
+  private TextView emptyTxt;
+  private ProgressBar progressBarRefresh, progressBarMore;
+  private Drawable headerProgressBar, footProgressBar;
+  private Drawable headerDrawableBg, footDrawableBg;
+  private int headerTextColor, footTextColor;
+  private TextView loadingRefreshText, loadingMoreText;
   private int headerBg = ContextCompat.getColor(getContext(), R.color.white);
   private int footerBg = ContextCompat.getColor(getContext(), R.color.white);
   private boolean isRefresh, isLoadMore;
@@ -55,14 +65,34 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
 
   public DefaultRefreshLayout(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+
     setChildrenDrawingOrderEnabled(true);
+
     mCenterViewContainer = new DefaultPullLayout(context);
+    mEmptyView = LayoutInflater.from(getContext()).inflate(R.layout.widget_pullrefresh_empty,
+        mCenterViewContainer, false);
+    emptyImg = (ImageView) mEmptyView.findViewById(R.id.empty);
+    emptyTxt = (TextView) mEmptyView.findViewById(R.id.emptyMsg);
+    mErrorView = LayoutInflater.from(getContext()).inflate(R.layout.widget_pullrefresh_error,
+        mCenterViewContainer, false);
+    mCenterViewContainer.addView(mEmptyView);
     addView(mCenterViewContainer);
+
     if (attrs != null) {
       TypedArray array = getContext().obtainStyledAttributes(attrs,
           R.styleable.DefaultRefreshLayout);
       this.hasFooter = array.getBoolean(R.styleable.DefaultRefreshLayout_footer, true);
       this.hasHeader = array.getBoolean(R.styleable.DefaultRefreshLayout_header, true);
+      headerBg = array.getColor(R.styleable.DefaultRefreshLayout_header_bg, Color.WHITE);
+      footerBg = array.getColor(R.styleable.DefaultRefreshLayout_foot_bg, Color.WHITE);
+      headerProgressBar = array.getDrawable(R.styleable.DefaultRefreshLayout_header_progressBar);
+      footProgressBar = array.getDrawable(R.styleable.DefaultRefreshLayout_foot_progressBar);
+      headerDrawableBg = array.getDrawable(R.styleable.DefaultRefreshLayout_header_drawable_bg);
+      footDrawableBg = array.getDrawable(R.styleable.DefaultRefreshLayout_foot_drawable_bg);
+      headerTextColor = array.getColor(R.styleable.DefaultRefreshLayout_header_text_color,
+          ContextCompat.getColor(context, R.color.charcoalGrey));
+      footTextColor = array.getColor(R.styleable.DefaultRefreshLayout_foot_text_color,
+          ContextCompat.getColor(context, R.color.charcoalGrey));
       array.recycle();
     }
     mHeader = (DefaultHeaderView) LayoutInflater.from(context)
@@ -70,23 +100,33 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     addView((DefaultHeaderView) mHeader);
     mFooter = (DefaultFooterView) LayoutInflater.from(context)
         .inflate(R.layout.widget_pullrefresh_footer, this, false);
-    progressBarRefresh = (ProgressBar) ((DefaultHeaderView) mHeader).findViewById(R.id.refresh_pb);
-    loadingRefreshText = (TextView) ((DefaultHeaderView) mHeader).findViewById(R.id.refresh_tv);
+    progressBarRefresh = (ProgressBar) ((DefaultHeaderView) mHeader)
+        .findViewById(R.id.refresh_pb_view);
+    progressBarMore = (ProgressBar) ((DefaultFooterView) mFooter)
+        .findViewById(R.id.footer_pb_view1);
+    loadingRefreshText = (TextView) ((DefaultHeaderView) mHeader)
+        .findViewById(R.id.refresh_text_view);
+    loadingMoreText = (TextView) ((DefaultFooterView) mFooter).findViewById(R.id.footer_text_view1);
     addView((DefaultFooterView) mFooter);
+    initAttrs();
   }
 
   /**
-   * RefreshLayout 停止加载刷新
+   * 初始化xml参数属性
    */
-  public void stopLoad(boolean isMore) {
-    if (isRefreshing()) {
-      stopRefresh();
+  private void initAttrs() {
+    loadingRefreshText.setTextColor(headerTextColor);
+    loadingMoreText.setTextColor(footTextColor);
+    setHeaderBg(headerBg);
+    setFooterBg(footerBg);
+    if (null != headerProgressBar)
+      progressBarRefresh.setIndeterminateDrawable(headerProgressBar);
+    if (null != footProgressBar)
+      progressBarMore.setIndeterminateDrawable(footProgressBar);
+    setBackgroundColor(headerBg);
+    if (null != headerDrawableBg) {
+      setBackground(headerDrawableBg);
     }
-    if (isLoading()) {
-      stopLoad();
-    }
-    hideView();
-    setHasFooter(isMore);
   }
 
   @Override
@@ -108,6 +148,18 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    mEmptyView.measure(
+        View.MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingLeft() - getPaddingRight(),
+            View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(getMeasuredHeight() - getPaddingTop() - getPaddingBottom(),
+            View.MeasureSpec.EXACTLY));
+    mErrorView.measure(
+        View.MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingLeft() - getPaddingRight(),
+            View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(getMeasuredHeight() - getPaddingTop() - getPaddingBottom(),
+            View.MeasureSpec.EXACTLY));
+
     // 记录头尾位置
     headerIndex = -1;
     for (int index = 0; index < getChildCount(); index++) {
@@ -133,12 +185,24 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     return ((DefaultFooterView) mFooter).isLoading();
   }
 
-  public void setTextColour(int colour) {
+  public void setHeaderTextColour(int colour) {
+    headerTextColor = colour;
     loadingRefreshText.setTextColor(colour);
   }
 
-  public void setPreColour(Drawable drawable) {
+  public void setFootTextColour(int colour) {
+    footTextColor = colour;
+    loadingMoreText.setTextColor(colour);
+  }
+
+  public void setHeaderPreDrawable(Drawable drawable) {
+    headerProgressBar = drawable;
     progressBarRefresh.setIndeterminateDrawable(drawable);
+  }
+
+  public void setFootPreDrawable(Drawable drawable) {
+    footProgressBar = drawable;
+    progressBarMore.setIndeterminateDrawable(drawable);
   }
 
   public void setHeaderBg(int headerBg) {
@@ -149,8 +213,20 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     this.footerBg = footerBg;
   }
 
+  public void setHeaderBg(Drawable headerDrawableBg) {
+    this.headerDrawableBg = headerDrawableBg;
+  }
+
+  public void setFooterBg(Drawable footDrawableBg) {
+    this.footDrawableBg = footDrawableBg;
+  }
+
   /**
    * 确保头尾最后画
+   *
+   * @param childCount
+   * @param i
+   * @return
    */
   @Override
   protected int getChildDrawingOrder(int childCount, int i) {
@@ -181,6 +257,9 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
       if (y != 0) {
         if (!isRefresh) {
           setBackgroundColor(headerBg);
+          if (null != headerDrawableBg) {
+            setBackground(headerDrawableBg);
+          }
           isLoadMore = false;
         }
         isRefresh = true;
@@ -192,6 +271,9 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
       if (y != 0) {
         if (!isLoadMore) {
           setBackgroundColor(footerBg);
+          if (null != footDrawableBg) {
+            setBackground(footDrawableBg);
+          }
           isRefresh = false;
         }
         isLoadMore = true;
@@ -226,17 +308,7 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
   }
 
   public boolean isChildScrollToTop() {
-    if (Build.VERSION.SDK_INT < 14) {
-      if (mPullView instanceof AbsListView) {
-        final AbsListView absListView = (AbsListView) mPullView;
-        return !(absListView.getChildCount() > 0 && (absListView.getFirstVisiblePosition() > 0
-            || absListView.getChildAt(0).getTop() < absListView.getPaddingTop()));
-      } else {
-        return !(contentView.getScrollY() > 0);
-      }
-    } else {
-      return !ViewCompat.canScrollVertically(mPullView, -1);
-    }
+    return !ViewCompat.canScrollVertically(mPullView, -1);
   }
 
   public boolean isChildScrollToBottom() {
@@ -277,7 +349,10 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
         return false;
       }
       int lastPos = absListView.getLastVisiblePosition();
-      return (lastPos > 0 && count > 0 && lastPos == count - 1);
+      if (lastPos > 0 && count > 0 && lastPos == count - 1) {
+        return true;
+      }
+      return false;
     } else if (mPullView instanceof ScrollView) {
       ScrollView scrollView = (ScrollView) mPullView;
       View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
@@ -301,9 +376,40 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     return false;
   }
 
+  public void showEmpty() {
+    this.showView(mEmptyView);
+  }
+
+  public void showEmpty(@DrawableRes int imgRes, String msg) {
+    emptyImg.setImageDrawable(getContext().getResources().getDrawable(imgRes));
+    emptyTxt.setText(msg);
+    showEmpty();
+  }
+
+  public void showEmpty(@DrawableRes int imgRes, @StringRes int msgRes) {
+    showEmpty(imgRes, getContext().getString(msgRes));
+  }
+
+  public void setEmptyState() {
+    setHasFooter(false);
+    setHasHeader(false);
+  }
+
   public void resume() {
     setHasHeader(true);
     setHasFooter(true);
+  }
+
+  public void setEmptyView(View view) {
+    this.mEmptyView = view;
+  }
+
+  public void showError(String message) {
+    if (message != null) {
+      TextView errorMsg = (TextView) mErrorView.findViewById(R.id.errorMsg);
+      errorMsg.setText(message);
+    }
+    this.showView(mErrorView);
   }
 
   public void showView(View view) {
@@ -377,6 +483,15 @@ public class DefaultRefreshLayout extends PullRefreshLayout {
     if (this.mHeader != null && this.mHeader instanceof DefaultHeaderView) {
       ((DefaultHeaderView) this.mHeader).setTopPadding(topPadding);
     }
+  }
+
+  public void finishLoad(boolean isMore) {
+    if (isRefreshing())
+      stopRefresh();
+    if (isLoading())
+      stopLoad();
+    hideView();
+    setHasFooter(isMore);
   }
 
 }

@@ -1,5 +1,26 @@
 apply plugin: 'com.android.application'
 
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --first-parent --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+def gitVersionName() {
+    def cmd = 'git describe --tags'
+    def version = cmd.execute().text.trim()
+    def pattern = "-(\\d+)-g"
+    def matcher = version =~ pattern
+    if (matcher) {
+//        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
+        version = version.substring(0, matcher.start())
+    } else if (version) {
+//        version = version + ".0"
+        version = version
+    } else {
+        version = 0.0
+    }
+    return version
+}
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -10,6 +31,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"http://192.168.1.109:8088/leap/\"")
+        // 192.168.1.109  172.17.3.108
+        println("------------------环境变量--------------")
+        println("versionCode=" + gitVersionCode())
+        println("versionName=" + gitVersionName())
+        getBuildConfigFields().each { item ->
+            println("KEY=" + item.key)
+            println("VALUE=" + item.value.getValue())
+        }
+        println("------------------环境变量--------------")
     }
     buildTypes {
         release {
@@ -19,6 +50,23 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    applicationVariants.all { variant ->
+        def versionCode = gitVersionCode()
+        def versionName = variant.buildType.name + "." + versionCode
+        if (variant.buildType.name == "release") {
+            versionName = gitVersionName()
+        }
+        variant.mergedFlavor.versionCode = versionCode
+        variant.mergedFlavor.versionName = versionName
+
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = "laya-${variant.buildType.name}-${versionName}-${versionCode}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
     }
 }
 

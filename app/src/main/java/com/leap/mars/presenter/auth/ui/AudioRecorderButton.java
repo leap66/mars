@@ -1,7 +1,5 @@
 package com.leap.mars.presenter.auth.ui;
 
-import com.leap.mars.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
@@ -12,8 +10,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.leap.mars.R;
+import com.leap.mars.widget.audio.AudioDialog;
+import com.leap.mars.widget.audio.AudioManager;
+import com.leap.mars.widget.audio.AudioStateListener;
+
 @SuppressLint("HandlerLeak")
-public class AudioRecorderButton extends Button implements AudioManager.AudioStateListener {
+public class AudioRecorderButton extends Button implements AudioStateListener {
 
   private static final int DISTANCE_Y_CANCEL = 50; // �ı�y�������ƶ��ľ���
 
@@ -29,7 +32,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
   private boolean isRecording = false;
   // �Ƿ񴥷�LongClick
   private boolean isReady;
-  private DialogManager dialogManager;
+  private AudioDialog audioDialog;
   private AudioManager audioManager;
 
   /**
@@ -51,9 +54,9 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
 
   public AudioRecorderButton(Context context, AttributeSet attrs) {
     super(context, attrs);
-    dialogManager = new DialogManager(context);
+    audioDialog = new AudioDialog(context);
     String dir = Environment.getExternalStorageDirectory() + "/chat_recorder_audios";
-    audioManager = AudioManager.getmInstance(dir);
+    audioManager = AudioManager.getInstance(dir);
     audioManager.setOnAudioStateListener(this);
 
     setOnLongClickListener(new OnLongClickListener() {
@@ -101,16 +104,16 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
     public void handleMessage(Message msg) {
       switch (msg.what) {
       case MSG_AUDIO_PREPARED:
-        dialogManager.showRecordingDialog();
+        audioDialog.showDialog();
         isRecording = true;
         new Thread(mGetVoiceLevelRaunnable).start();
         break;
       case MSG_VOICE_CHANGED:
-        dialogManager.updateVoiceLevel(audioManager.getVoiceLevel(7));
+        audioDialog.updateVoiceLevel(audioManager.getVoiceLevel(7));
         break;
 
       case MSG_DIALOG_DIMISS:
-        dialogManager.dimissDialog();
+        audioDialog.dismissDialog();
         break;
       }
     };
@@ -150,13 +153,13 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         return super.onTouchEvent(event);
       }
       if (!isRecording || mTime < 0.6f) {
-        dialogManager.tooShort();
+        audioDialog.tooShort();
         audioManager.cancel();
         handler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1000);
         reset();
         return super.onTouchEvent(event);
       } else if (mCurState == STATE_RECORDING) { // ����¼�ƽ���
-        dialogManager.dimissDialog();
+        audioDialog.dismissDialog();
         audioManager.release();
         if (audioFinishRecorderListener != null) {
           audioFinishRecorderListener.onFinish(mTime, audioManager.getCurrentFilePath());
@@ -164,11 +167,11 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         // release
         // callbackToAct
       } else if (mCurState == STATE_WANT_TO_CANCEL) {
-        dialogManager.dimissDialog();
+        audioDialog.dismissDialog();
         audioManager.cancel();
         // cancel
       }
-      // dialogManager.dimissDialog();
+      // audioDialog.dismissDialog();
       // ����
       reset();
       break;
@@ -208,7 +211,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         setText(R.string.str_recorder_recording);
         if (isRecording) {
           // TODO Dialog.recording();
-          dialogManager.recording();
+          audioDialog.recording();
         }
 
         break;
@@ -217,7 +220,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         setBackgroundResource(R.drawable.btn_recording);
         setText(R.string.str_recorder_want_cancel);
         // TODO Dialog.wantCanael();
-        dialogManager.wantToCancel();
+        audioDialog.wantToCancel();
         break;
       }
     }

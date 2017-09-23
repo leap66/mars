@@ -10,9 +10,8 @@ import java.util.Locale;
  * <p>
  * </> Created by weiyaling on 2017/3/7.
  */
-
 public class DateUtil {
-  public static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+  public static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
   public static String format(Date date, String format) {
     if (IsEmpty.object(date))

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_item_voice_date_reply" >
 
-        <com.leap.mars.presenter.auth.ui.CircleImageView
+        <com.leap.mars.widget.CircleImageView
             android:id="@+id/civ_item_voice_head_reply"
             android:layout_width="40dp"
             android:layout_height="40dp"
