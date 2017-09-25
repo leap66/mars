@@ -8,8 +8,10 @@ import android.view.View;
 
 import com.github.markzhai.recyclerview.BaseViewAdapter;
 import com.github.markzhai.recyclerview.SingleTypeAdapter;
+import com.google.gson.reflect.TypeToken;
 import com.leap.mars.R;
 import com.leap.mars.cmp.SessionMgr;
+import com.leap.mars.config.AppConfig;
 import com.leap.mars.databinding.ActivityChatTypeBinding;
 import com.leap.mars.model.Chat;
 import com.leap.mars.model.Dialogue;
@@ -20,9 +22,11 @@ import com.leap.mars.presenter.base.BaseActivity;
 import com.leap.mars.util.ConvertUtil;
 import com.leap.mars.util.FileUtil;
 import com.leap.mars.widget.audio.AudioListener;
+import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.model.network.Response;
 import com.leap.mini.net.HttpSubscriber;
 import com.leap.mini.util.DialogUtil;
+import com.leap.mini.util.GsonUtil;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.ToastUtil;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
@@ -50,8 +54,8 @@ public class ChatTypeActivity extends BaseActivity {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_chat_type);
     binding.setPresenter(new Presenter());
     binding.setNormal(true);
-    context = this;
     dialogueList = new ArrayList<>();
+    context = this;
     loadRcy();
   }
 
@@ -67,12 +71,22 @@ public class ChatTypeActivity extends BaseActivity {
 
   @Override
   protected void loadData(Bundle savedInstanceState) {
-    Dialogue dialogue = new Dialogue();
-    dialogue.setInfo(getString(R.string.chat_type_info_default));
-    dialogue.setTime(new Date());
-    dialogueList.add(dialogue);
+    List<Dialogue> temp = GsonUtil.parseList(
+        StorageMgr.get(AppConfig.CHAP_TYPE_STORAGE, StorageMgr.LEVEL_USER),
+        new TypeToken<List<Dialogue>>() {
+        }.getType());
+    dialogueList.addAll(temp);
+    if (IsEmpty.list(temp)) {
+      dialogueList = new ArrayList<>();
+      Dialogue dialogue = new Dialogue();
+      dialogue.setUserId(SessionMgr.getUser().getId());
+      dialogue.setInfo(getString(R.string.chat_type_info_default));
+      dialogue.setTime(new Date());
+      dialogueList.add(dialogue);
+    }
     adapter.clear();
     adapter.addAll(dialogueList);
+    binding.homeRcy.smoothScrollToPosition(dialogueList.size());
   }
 
   @Override
@@ -166,6 +180,12 @@ public class ChatTypeActivity extends BaseActivity {
     adapter = new SingleTypeAdapter<>(context, R.layout.item_chat_type);
     adapter.setPresenter(new Presenter());
     binding.setAdapter(adapter);
+  }
+
+  @Override
+  protected void onDestroy() {
+    StorageMgr.set(AppConfig.CHAP_TYPE_STORAGE, dialogueList, StorageMgr.LEVEL_USER);
+    super.onDestroy();
   }
 
   public class Presenter implements BaseViewAdapter.Presenter {

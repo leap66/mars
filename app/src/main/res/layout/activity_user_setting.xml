@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.user.UserSettingActivity.Presenter"/>
+
+        <variable
+            name="item"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
+
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:bgColor="@color/white"
+            app:navigationIcon="@mipmap/ic_back_grey"
+            app:titleSize="@dimen/title"
+            app:titleText="@string/user_setting"
+            app:titleTextColor="@color/charcoalGrey"/>
+
+        <View style="@style/divider_title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onPhoto()}"
+            android:paddingBottom="13dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="13dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{item}"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/huge_text"/>
+
+            <com.leap.mars.widget.CircleImageView
+                android:id="@+id/user_photo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="9.5dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/a09"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onPwd()}"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pwd_reset_title"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/huge_text"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onMobile()}"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/mobile_reset_title"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/huge_text"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

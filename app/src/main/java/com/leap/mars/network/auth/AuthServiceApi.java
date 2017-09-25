@@ -1,6 +1,7 @@
 package com.leap.mars.network.auth;
 
 import com.leap.mars.model.Auth;
+import com.leap.mars.model.User;
 import com.leap.mini.model.network.Response;
 
 import retrofit2.http.Body;
@@ -35,7 +36,7 @@ public interface AuthServiceApi {
    * @return String
    */
   @POST("app/auth/login")
-  Observable<Response<String>> login(@Query("mobile") String mobile,
+  Observable<Response<User>> login(@Query("mobile") String mobile,
       @Query("password") String password);
 
   /**
@@ -46,7 +47,7 @@ public interface AuthServiceApi {
    * @return String
    */
   @POST("app/auth/login")
-  Observable<Response<String>> logout(@Query("id") String id);
+  Observable<Response<Boolean>> logout(@Query("id") String id);
 
   /**
    * 发送验证码
@@ -57,8 +58,8 @@ public interface AuthServiceApi {
    *          核验是否存在
    * @return String
    */
-  @POST("app/auth/login")
-  Observable<Response<String>> smsSend(@Query("mobile") String mobile,
+  @POST("app/auth/sms/send")
+  Observable<Response<Boolean>> smsSend(@Query("mobile") String mobile,
       @Query("exist") boolean exist);
 
   /**
@@ -70,8 +71,8 @@ public interface AuthServiceApi {
    *          验证码
    * @return String
    */
-  @POST("app/auth/login")
-  Observable<Response<String>> smsCheck(@Query("mobile") String mobile, @Query("code") String code);
+  @POST("app/auth/sms/check")
+  Observable<Response<Boolean>> smsCheck(@Query("mobile") String mobile, @Query("code") String code);
 
   /**
    * 密码修改
@@ -85,7 +86,7 @@ public interface AuthServiceApi {
    * @return String
    */
   @POST("app/auth/reset/password")
-  Observable<Response<String>> pwdReset(@Query("mobile") String mobile,
+  Observable<Response<Boolean>> pwdReset(@Query("mobile") String mobile,
       @Query("password") String password, @Query("code") String code);
 
   /**
@@ -100,6 +101,6 @@ public interface AuthServiceApi {
    * @return String
    */
   @POST("app/auth/reset/mobile")
-  Observable<Response<Boolean>> mobileReset(@Query("mobile") String mobile,
+  Observable<Response<String>> mobileReset(@Query("mobile") String mobile,
       @Query("oldMobile") String oldMobile, @Query("code") String code);
 }

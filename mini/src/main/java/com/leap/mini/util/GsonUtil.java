@@ -9,7 +9,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
@@ -26,7 +25,7 @@ import java.util.Locale;
  */
 
 public class GsonUtil {
-  private static Gson gson;
+  private static Gson instance;
 
   /**
    * 将json字符串转为 java对象
@@ -38,9 +37,8 @@ public class GsonUtil {
   /**
    * 将json字符串转为 java列表对象
    */
-  synchronized public static <T> List<T> parseList(String json, Class<T> classOfT) {
-    return getInstance().fromJson(json, new TypeToken<List<T>>() {
-    }.getType());
+  synchronized public static <T> List<T> parseList(String json, Type classOfT) {
+    return getInstance().fromJson(json, classOfT);
   }
 
   /**
@@ -54,12 +52,12 @@ public class GsonUtil {
    * 获取gson实例(排除了FINAL、TRANSIENT、STATIC)
    */
   public static Gson getInstance() {
-    if (IsEmpty.object(gson))
-      gson = new GsonBuilder().serializeNulls()
+    if (IsEmpty.object(instance))
+      instance = new GsonBuilder().serializeNulls()
           .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
           .registerTypeAdapter(String.class, new StringConverter())
           .registerTypeAdapter(Date.class, new DateConverter()).create();
-    return gson;
+    return instance;
   }
 
   /**

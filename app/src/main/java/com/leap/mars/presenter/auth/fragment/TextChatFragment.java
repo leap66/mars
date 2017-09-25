@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.leap.mars.R;
-import com.leap.mars.presenter.auth.activity.NavigationActivity;
+import com.leap.mars.presenter.auth.NavigationActivity;
 import com.leap.mars.presenter.auth.activity.TextChatActivity;
 import com.leap.mars.presenter.auth.app.MyApplication;
 import com.leap.mars.widget.CircleImageView;

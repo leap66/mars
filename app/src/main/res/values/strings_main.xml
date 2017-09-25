@@ -27,4 +27,13 @@
     <string name="chat_type_info_default">你好啊,需要什么帮助吗？</string>
     <string name="chat_type_voice_len">{0} \'\'</string>
 
+    <!-- 我的 -->
+    <string name="user_robot_name">小幕</string>
+    <string name="user_navigation">玩法</string>
+    <string name="user_setting">个人资料设置</string>
+    <string name="user_robot_setting">小幕资料设置</string>
+    <string name="user_app_setting">设置</string>
+    <string name="user_about">关于</string>
+    <string name="user_quit">安全退出</string>
+
 </resources>

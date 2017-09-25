@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.auth.RegisterActivity.Presenter"/>
+
+        <import type="com.leap.mars.config.PrecisionConfig.User"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
+
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:bgColor="@color/white"
+            app:navigationIcon="@mipmap/ic_back_grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_title"
+                android:textColor="@color/lipstick"
+                android:textSize="@dimen/huge_title"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_hint"
+                    android:textColor="@color/coolGrey"
+                    android:textSize="@dimen/text"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->presenter.onReadAgreement()}"
+                    android:text="@string/register_agreement"
+                    android:textColor="@color/frenchBlue"
+                    android:textSize="@dimen/text"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="36dp">
+
+                <ImageView
+                    android:id="@+id/name_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/bg_login_user_select"
+                    android:visibility="visible"/>
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/name_iv"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_name_hint"
+                    android:inputType="text"
+                    android:maxLength="@{User.name}"
+                    android:maxLines="1"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="@dimen/small_title"/>
+
+                <View
+                    android:id="@+id/name_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_line_select"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/password_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bg_password_select"
+                    android:visibility="visible"/>
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_toLeftOf="@+id/password_visible_iv"
+                    android:layout_toRightOf="@+id/password_iv"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_password_hint"
+                    android:inputType="textPassword"
+                    android:maxLength="@{User.password}"
+                    android:maxLines="1"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="@dimen/small_title"/>
+
+                <ImageView
+                    android:id="@+id/password_visible_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:onClick="@{()->presenter.onPasswordVisible()}"
+                    android:padding="5dp"
+                    android:src="@drawable/bg_eyes_select"/>
+
+                <View
+                    android:id="@+id/password_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_line_select"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="36dp">
+
+            <Button
+                android:id="@+id/register_btn"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/bg_btn_login"
+                android:enabled="false"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onRegister()}"
+                android:text="@string/register"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/title"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
+

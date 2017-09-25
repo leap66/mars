@@ -27,6 +27,6 @@ public class MinLengthRule implements Rule {
 
   @Override
   public String getErrorMessage() {
-    return null;
+    return message;
   }
 }

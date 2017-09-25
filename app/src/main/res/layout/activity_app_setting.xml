@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.user.AppSettingActivity.Presenter">
+
+        </variable>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/paleGrey"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
+
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:bgColor="@color/white"
+            app:navigationIcon="@mipmap/ic_back_grey"
+            app:titleSize="@dimen/title"
+            app:titleText="@string/user_app_setting"
+            app:titleTextColor="@color/charcoalGrey"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onSkipBlueTooth()}"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_app_setting"
+                    android:textColor="@color/charcoalGrey"
+                    android:textSize="@dimen/huge_text"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/coolGrey"
+                    android:textSize="@dimen/detail"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/ic_chevron"
+                android:button="@null"
+                android:contentDescription="@null"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

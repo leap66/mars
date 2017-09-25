@@ -6,6 +6,7 @@ import com.leap.mars.model.Voice;
 import com.leap.mini.util.IsEmpty;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author : ylwei
@@ -16,6 +17,7 @@ public class ConvertUtil {
 
   public static Dialogue VoiceToB(Chat chat) {
     Dialogue dialogue = new Dialogue();
+    dialogue.setId(IsEmpty.string(chat.getId()) ? UUID.randomUUID().toString() : chat.getId());
     if (IsEmpty.object(chat.getVoice())) {
       dialogue.setAsk(true);
       dialogue.setTime(chat.getTime());

@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_navigation"
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.auth.NavigationActivity.Presenter"/>
+
+        <variable
+            name="item"
+            type="java.lang.Boolean"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_navigation"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:background="#f7b200"
-        android:text="点击立即进入"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        android:visibility="gone" />
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
 
-</RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center"
+            android:onClick="@{()->presenter.onEntry()}"
+            android:text="@string/navigation_entry"
+            android:textColor="@color/coral"
+            android:textSize="@dimen/title"
+            android:visibility="@{item?View.VISIBLE:View.GONE}"/>
+
+    </RelativeLayout>
+</layout>

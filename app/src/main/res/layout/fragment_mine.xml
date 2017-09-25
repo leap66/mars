@@ -1,96 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/a09"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:id="@+id/rl_main_head"
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.main.UserFragment.Presenter"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#ffffff"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:background="@mipmap/a09"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/civ_edit_picture"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:src="@mipmap/ac7" />
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
 
-        <TextView
-            android:id="@+id/tv_edit_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/civ_edit_picture"
-            android:text="小慕"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-    </RelativeLayout>
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/bt_edit_instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="玩法"
-        android:textColor="#333333"
-        android:textSize="20sp" />
+            <com.leap.mars.widget.CircleImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ac7"/>
 
-    <Button
-        android:id="@+id/bt_edit_robot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="个人资料设置"
-        android:textColor="#333333"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/user_robot_name"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/bt_edit_personal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="小慕资料设置"
-        android:textColor="#333333"
-        android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onNavigation()}"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/bt_edit_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="系统设置"
-        android:textColor="#333333"
-        android:textSize="20sp" />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_info"/>
 
-    <Button
-        android:id="@+id/bt_edit_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="退出"
-        android:textColor="#333333"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_navigation"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
 
-</LinearLayout>
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="26dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onUser()}"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_login_user_hl"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_setting"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="26dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onRobot()}"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_mins_usermsg"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_robot_setting"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="26dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onAppSetting()}"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_mine_setting"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_app_setting"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="26dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_ignore"
+            android:gravity="center_vertical"
+            android:onClick="@{()->presenter.onAbout()}"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_mine_abt"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/user_about"
+                android:textColor="@color/charcoalGrey"
+                android:textSize="@dimen/title"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="26dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/ic_chevron"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/bg_btn_login"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onQuit()}"
+                android:text="@string/user_quit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title"/>
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+</layout>

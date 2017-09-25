@@ -1,15 +1,19 @@
 package com.leap.mini.widget.validator;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.TextView;
 
 import com.leap.mini.widget.validator.rules.PhoneNumberRule;
 import com.leap.mini.widget.validator.rules.RequiredRule;
 import com.leap.mini.widget.validator.rules.Rule;
 
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -17,10 +21,32 @@ import android.widget.TextView;
  */
 
 public class Validator {
-  public Map<TextView, List<Rule>> validations = new LinkedHashMap<TextView, List<Rule>>();
+  private Map<TextView, List<Rule>> validations = new LinkedHashMap<>();
+  private List<View> viewList = new ArrayList<>();
 
-  public void register(TextView textView, Rule... rules) {
+  public void register(final TextView textView, Rule... rules) {
+    textView.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+      }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        for (View view : viewList) {
+          view.setEnabled(validateAll());
+        }
+      }
+    });
+
     validations.put(textView, Arrays.asList(rules));
+  }
+
+  public void bindEnable(View... views) {
+    this.viewList.addAll(Arrays.asList(views));
   }
 
   public void unregister(TextView textView) {
@@ -32,10 +58,22 @@ public class Validator {
       for (Rule rule : validations.get(key)) {
         if (!rule.validate(String.valueOf(key.getText()))) {
           resultCall.onFailure(rule.getErrorMessage());
+          return;
         }
       }
     }
     resultCall.onSuccess();
+  }
+
+  private boolean validateAll() {
+    for (TextView key : validations.keySet()) {
+      for (Rule rule : validations.get(key)) {
+        if (!rule.validate(String.valueOf(key.getText()))) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   public boolean validate(TextView textView) {
@@ -61,6 +99,7 @@ public class Validator {
 
     if (validator.validate(text)) {
       // 单个控件检查成功
+      // TODO
     }
 
     validator.validateAll(new ValidateResultCall() {

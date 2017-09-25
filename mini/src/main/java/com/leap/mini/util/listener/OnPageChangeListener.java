@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
  * <p>
  * </> Created by weiyaling on 2017/5/11.
  */
-
 public abstract class OnPageChangeListener implements ViewPager.OnPageChangeListener {
 
   @Override

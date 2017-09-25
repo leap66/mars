@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.user.ResetPwdActivity.Presenter"/>
+
+        <import type="com.leap.mars.config.PrecisionConfig.User"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
+
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:bgColor="@color/white"
+            app:navigationIcon="@mipmap/ic_back_grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gradient_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pwd_reset_title"
+                android:textColor="@color/lipstick"
+                android:textSize="@dimen/huge_title"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/pwd_hint"
+                android:textColor="@color/coolGrey"
+                android:textSize="@dimen/text"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="36dp">
+
+                <ImageView
+                    android:id="@+id/mobile_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bg_mobile_select"
+                    android:visibility="visible"/>
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/mobile_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_toLeftOf="@+id/send_code_ct"
+                    android:layout_toRightOf="@+id/mobile_iv"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/login_phone_hint"
+                    android:inputType="phone"
+                    android:maxLength="@{User.mobile}"
+                    android:maxLines="1"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="@dimen/title"/>
+
+                <com.leap.mini.widget.CountTimeTextView
+                    android:id="@+id/send_code_ct"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:onClick="@{()->presenter.onSend()}"
+                    android:text="@string/send_code_hint"
+                    android:textColor="@color/charcoalGrey"
+                    android:textSize="@dimen/text"/>
+
+                <View
+                    android:id="@+id/mobile_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_line_select"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <ImageView
+                    android:id="@+id/code_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bg_verify_code_select"/>
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/code_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toEndOf="@+id/code_iv"
+                    android:layout_toRightOf="@+id/code_iv"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/code_hint"
+                    android:inputType="number"
+                    android:maxLength="@{User.authCode}"
+                    android:maxLines="1"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="@dimen/small_title"/>
+
+                <View
+                    android:id="@+id/code_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_line_select"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <ImageView
+                    android:id="@+id/password_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bg_password_select"
+                    android:visibility="visible"/>
+
+                <com.leap.mini.widget.cleartextfield.ClearEditText
+                    android:id="@+id/password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_toLeftOf="@+id/password_visible_iv"
+                    android:layout_toRightOf="@+id/password_iv"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/login_password_hint"
+                    android:inputType="textPassword"
+                    android:maxLength="@{User.password}"
+                    android:maxLines="1"
+                    android:textColor="@color/charcoalGrey"
+                    android:textColorHint="@color/silver"
+                    android:textSize="@dimen/small_title"/>
+
+                <ImageView
+                    android:id="@+id/password_visible_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:onClick="@{()->presenter.onPasswordVisible()}"
+                    android:padding="5dp"
+                    android:src="@drawable/bg_eyes_select"/>
+
+                <View
+                    android:id="@+id/password__line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_line_select"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="36dp">
+
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/bg_btn_login"
+                android:enabled="false"
+                android:gravity="center"
+                android:onClick="@{()->presenter.onSubmit()}"
+                android:text="@string/confirm"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/title"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
+

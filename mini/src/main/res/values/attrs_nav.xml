@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NavigationBar">
+        <attr name="bgColor" format="reference|color"/>
+        <attr name="showNavigationIcon" format="boolean"/>
+        <attr name="navigationIcon" format="reference"/>
+        <attr name="titleText" format="string"/>
+        <attr name="titleSize" format="dimension"/>
+        <attr name="titleTextColor" format="color"/>
+        <attr name="showSubTitle" format="boolean"/>
+        <attr name="subTitleText" format="string"/>
+        <attr name="subTitleSize" format="dimension"/>
+        <attr name="subTitleColor" format="color"/>
+        <attr name="titleType" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="search" value="1"/>
+        </attr>
+        <attr name="actionType" format="enum">
+            <enum name="text" value="0"/>
+            <enum name="image" value="1"/>
+        </attr>
+        <attr name="actionTextSize" format="dimension"/> <!-- actionType==0时-->
+        <attr name="actionTextColor" format="color"/><!-- actionType==0时-->
+
+        <attr name="actionPadding" format="dimension"/>
+        <attr name="actionList" format="reference"/>
+
+    </declare-styleable>
+</resources>

@@ -9,8 +9,6 @@ import android.view.View;
 
 import com.leap.mars.R;
 import com.leap.mars.databinding.ActivityMainBinding;
-import com.leap.mars.presenter.auth.fragment.ControlFragment;
-import com.leap.mars.presenter.auth.fragment.MineFragment;
 import com.leap.mars.presenter.base.BaseActivity;
 import com.leap.mini.util.ExitHelper;
 import com.leap.mini.util.ToastUtil;
@@ -40,10 +38,10 @@ public class MainActivity extends BaseActivity {
 
   @Override
   protected void loadData(Bundle savedInstanceState) {
-   fragmentList.add(new HomeFragment());
     fragmentList.add(new HomeFragment());
     fragmentList.add(new HomeFragment());
     fragmentList.add(new HomeFragment());
+    fragmentList.add(new UserFragment());
     viewList.add(binding.rbType);
     viewList.add(binding.rbVoice);
     viewList.add(binding.rbControl);

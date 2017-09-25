@@ -16,7 +16,7 @@
         android:icon="@mipmap/ac7"
         android:label="@string/app_name"
         android:theme="@style/MainTheme">
-        <activity android:name=".presenter.auth.activity.SplashActivity">
+        <activity android:name=".presenter.auth.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,12 +24,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".presenter.main.MainActivity"/>
+        <activity android:name=".presenter.auth.LoginActivity"/>
+        <activity android:name=".presenter.auth.RegisterCheckActivity"/>
+        <activity android:name=".presenter.auth.RegisterActivity"/>
+        <activity android:name=".presenter.auth.AgreementActivity"/>
+        <activity android:name=".presenter.user.ResetMobileActivity"/>
+        <activity android:name=".presenter.user.ResetPwdActivity"/>
+        <activity android:name=".presenter.user.AppAboutActivity"/>
+        <activity android:name=".presenter.user.AppSettingActivity"/>
+        <activity android:name=".presenter.user.UserSettingActivity"/>
+
         <!-- 显示软键盘,并让布局压缩 -->
         <activity
             android:name=".presenter.chat.ChatTypeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name=".presenter.chat.ChatVoiceActivity"/>
-        <activity android:name=".presenter.auth.activity.NavigationActivity"/>
+        <activity android:name=".presenter.auth.NavigationActivity"/>
         <activity android:name=".presenter.auth.activity.TextChatActivity"/>
         <activity android:name=".presenter.auth.activity.VoiceChatActivity"/>
         <activity android:name=".presenter.auth.activity.ControlActivity"/>

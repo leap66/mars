@@ -11,16 +11,15 @@ def gitVersionName() {
     def pattern = "-(\\d+)-g"
     def matcher = version =~ pattern
     if (matcher) {
-//        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
         version = version.substring(0, matcher.start())
     } else if (version) {
-//        version = version + ".0"
         version = version
     } else {
         version = 0.0
     }
     return version
 }
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -31,7 +30,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"http://192.168.1.109:8088/leap/\"")
+        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"http://172.17.3.108:8088/leap/\"")
+        buildConfigField("String", "AGREEMENT_URL", System.getenv("SERVER_URL") ?: "\"http://www.baidu.com\"")
         // 192.168.1.109  172.17.3.108
         println("------------------环境变量--------------")
         println("versionCode=" + gitVersionCode())
