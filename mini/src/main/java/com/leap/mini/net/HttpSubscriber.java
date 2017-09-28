@@ -2,15 +2,18 @@ package com.leap.mini.net;
 
 import android.content.Context;
 
-import com.leap.mini.net.network.subscriber.ApiException;
 import com.leap.mini.model.network.Response;
+import com.leap.mini.net.network.event.AuthEvent;
+import com.leap.mini.net.network.subscriber.ApiException;
+import com.leap.mini.net.network.subscriber.TokenExpiredException;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.IsEmpty;
-import com.leap.mini.widget.sweetAlert.SweetAlertDialog;
+import com.leap.mini.widget.LoadingDialog;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
-import java.net.ConnectException;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 /**
@@ -21,7 +24,7 @@ import java.net.SocketTimeoutException;
 
 public abstract class HttpSubscriber<T> extends rx.Subscriber<Response<T>> {
   private Context context;
-  private SweetAlertDialog dialog;
+  private LoadingDialog dialog;
 
   public HttpSubscriber(Context context) {
     this.context = context;
@@ -90,9 +93,13 @@ public abstract class HttpSubscriber<T> extends rx.Subscriber<Response<T>> {
 
   private String parseException(Throwable throwable) {
     String errorMessage;
-    if (throwable instanceof SocketTimeoutException) {
+    if (throwable instanceof TokenExpiredException) {
+      // 使用EventBus通知跳转到登陆页面
+      EventBus.getDefault().post(new AuthEvent(AuthEvent.TOKEN_EXPIRED));
+      errorMessage = throwable.getMessage();
+    } else if (throwable instanceof SocketTimeoutException) {
       errorMessage = "网络链接超时,请稍后重试!";
-    } else if (throwable instanceof ConnectException) {
+    } else if (throwable instanceof SocketException) {
       errorMessage = "网络链接失败,请检查网络设置!";
     } else if (throwable instanceof JSONException) {
       errorMessage = "数据解析失败,请稍候重试!";

@@ -67,7 +67,7 @@ public class NavigationBar extends RelativeLayout {
       showNavigationIcon = typedArray.getBoolean(R.styleable.NavigationBar_showNavigationIcon,
           true);
       navigationIcon = typedArray.getResourceId(R.styleable.NavigationBar_navigationIcon,
-          R.mipmap.ic_back_grey);
+          R.mipmap.ic_title_back);
       title = typedArray.getString(R.styleable.NavigationBar_titleText);
       titleColor = typedArray.getColor(R.styleable.NavigationBar_titleTextColor,
           getResources().getColor(R.color.white));

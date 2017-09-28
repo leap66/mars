@@ -28,34 +28,15 @@
             style="@style/immersion_bar_white_style"
             android:background="@color/softBlue"/>
 
-        <LinearLayout
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
-            android:background="@color/softBlue"
-            android:gravity="center_vertical">
-
-            <com.leap.mars.widget.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:contentDescription="@null"
-                android:onClick="@{()->presenter.onBack()}"
-                android:src="@mipmap/ac7"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/main_name"
-                android:textColor="@color/charcoalGrey"
-                android:textSize="@dimen/title"/>
-
-            <Space
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+            app:bgColor="@color/softBlue"
+            app:navigationIcon="@mipmap/ic_title_back_wht"
+            app:titleSize="@dimen/title"
+            app:titleText="@string/chat_type_title"
+            app:titleTextColor="@color/white"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,12 +69,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@color/paleGrey"
-                android:fitsSystemWindows="true"
-                android:orientation="vertical"
-                android:paddingTop="-20dp">
+                android:orientation="vertical">
 
                 <com.leap.mini.widget.cleartextfield.ClearEditText
                     android:id="@+id/et_info"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:layout_marginBottom="10dp"

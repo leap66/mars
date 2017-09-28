@@ -52,11 +52,6 @@ public class LoginActivity extends BaseActivity {
   }
 
   @Override
-  protected View statusBarView() {
-    return binding.immersionBar;
-  }
-
-  @Override
   protected boolean isDarkFont() {
     return true;
   }
@@ -105,7 +100,7 @@ public class LoginActivity extends BaseActivity {
     new LoginCase(mobile, password).execute(new HttpSubscriber<User>(context) {
       @Override
       public void onFailure(String errorMsg, Response data) {
-        DialogUtil.showError(context, errorMsg).show();
+        DialogUtil.getErrorDialog(context, errorMsg).show();
       }
 
       @Override

@@ -22,6 +22,7 @@
     <string name="home_help">帮助</string>
 
     <!-- 文字聊天 -->
+    <string name="chat_type_title">消息</string>
     <string name="chat_type_hint">请输入聊天信息···</string>
     <string name="chat_type_send">发送</string>
     <string name="chat_type_info_default">你好啊,需要什么帮助吗？</string>

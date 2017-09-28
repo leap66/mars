@@ -15,10 +15,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <View
-            android:id="@+id/immersion_bar"
-            style="@style/immersion_bar_white_style"/>
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -39,8 +35,8 @@
 
                 <ImageView
                     android:id="@+id/mobile_iv"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
                     android:contentDescription="@null"
@@ -82,8 +78,8 @@
 
                 <ImageView
                     android:id="@+id/password_iv"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignTop="@+id/visible_iv"

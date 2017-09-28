@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.leap.mars.R;
+import com.leap.mars.util.ShortcutMgr;
 import com.leap.mini.net.network.event.AuthEvent;
 import com.leap.mini.util.ToastUtil;
 
@@ -27,6 +28,7 @@ import org.greenrobot.eventbus.ThreadMode;
 public abstract class BaseActivity extends AppCompatActivity {
   private boolean keyboardAutoHide = true;
   protected ImmersionBar mStatusBar;
+
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -47,6 +49,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     if (isDarkFont()) {
       mStatusBar.statusBarDarkFont(true, 0.2f);
     }
+    if (keyboardEnable())
+      mStatusBar.keyboardEnable(true);
     mStatusBar.init();
   }
 
@@ -59,6 +63,10 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   protected boolean isDarkFont() {
+    return false;
+  }
+
+  protected boolean keyboardEnable() {
     return false;
   }
 
@@ -144,22 +152,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void handleTokenExpired(AuthEvent event) {
-    // 如果删除成功，就将详情页设置为前一页
     if (event.type == AuthEvent.TOKEN_EXPIRED) {
-      // if (UpdateMgr.getInstance(this).isDialogShow())
-      // return;
       ToastUtil.showHint(this, R.string.token_expired);
-      logout();
+      ShortcutMgr.logout();
     }
-  }
-
-  private void logout() {
-    // CloudPushMgr.unBindAccount(SessionMgr.getUser().getId());
-    // TokenMgr.clear();
-    // SessionMgr.clearUser();
-    // Intent intent = new Intent(this, MainActivity.class);
-    // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-    // Intent.FLAG_ACTIVITY_NEW_TASK);
-    // startActivity(intent);
   }
 }

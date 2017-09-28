@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:bgColor="@color/white"
-            app:navigationIcon="@mipmap/ic_back_grey"
+            app:navigationIcon="@mipmap/ic_title_back"
             app:titleSize="@dimen/title"
             app:titleText="@string/user_about"
             app:titleTextColor="@color/charcoalGrey"/>

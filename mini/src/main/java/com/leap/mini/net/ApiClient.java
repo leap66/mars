@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.leap.mini.R;
 import com.leap.mini.mgr.TokenMgr;
-import com.leap.mini.net.network.event.AuthEvent;
 import com.leap.mini.net.network.subscriber.ApiException;
 import com.leap.mini.net.network.subscriber.NullOnEmptyConverterFactory;
 import com.leap.mini.net.network.subscriber.TokenExpiredException;
@@ -12,8 +11,6 @@ import com.leap.mini.util.GsonUtil;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.NetworkUtil;
 import com.leap.mini.widget.gsonconverter.GsonConverterFactory;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
@@ -47,8 +44,6 @@ public class ApiClient {
       Response response = chain.proceed(request);
       ApiException e = null;
       if (401 == response.code()) {
-        // 使用EventBus通知跳转到登陆页面
-        EventBus.getDefault().post(AuthEvent.TOKEN_EXPIRED);
         throw new TokenExpiredException(401,
             ((Context) mContext).getString(R.string.network_request_err_401));
       } else if (403 == response.code()) {

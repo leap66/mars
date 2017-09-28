@@ -62,7 +62,7 @@ public class HomeFragment extends BaseFragment {
         new LoginCase("13900001093", "123456").execute(new HttpSubscriber<String>(context) {
           @Override
           public void onFailure(String errorMsg, Response response) {
-            DialogUtil.showError(context, errorMsg).show();
+            DialogUtil.getErrorDialog(context, errorMsg).show();
           }
 
           @Override

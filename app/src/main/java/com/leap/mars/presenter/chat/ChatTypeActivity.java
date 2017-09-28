@@ -29,6 +29,7 @@ import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.GsonUtil;
 import com.leap.mini.util.IsEmpty;
 import com.leap.mini.util.ToastUtil;
+import com.leap.mini.widget.NavigationBar;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
 
 import java.io.File;
@@ -60,13 +61,8 @@ public class ChatTypeActivity extends BaseActivity {
   }
 
   @Override
-  protected View statusBarView() {
-    return binding.immersionBar;
-  }
-
-  @Override
-  protected boolean isDarkFont() {
-    return true;
+  protected boolean useStatusBar() {
+    return false;
   }
 
   @Override
@@ -75,7 +71,6 @@ public class ChatTypeActivity extends BaseActivity {
         StorageMgr.get(AppConfig.CHAP_TYPE_STORAGE, StorageMgr.LEVEL_USER),
         new TypeToken<List<Dialogue>>() {
         }.getType());
-    dialogueList.addAll(temp);
     if (IsEmpty.list(temp)) {
       dialogueList = new ArrayList<>();
       Dialogue dialogue = new Dialogue();
@@ -83,6 +78,8 @@ public class ChatTypeActivity extends BaseActivity {
       dialogue.setInfo(getString(R.string.chat_type_info_default));
       dialogue.setTime(new Date());
       dialogueList.add(dialogue);
+    } else {
+      dialogueList.addAll(temp);
     }
     adapter.clear();
     adapter.addAll(dialogueList);
@@ -117,7 +114,7 @@ public class ChatTypeActivity extends BaseActivity {
         new DialogueQueryCase().execute(new HttpSubscriber<List<Dialogue>>(null) {
           @Override
           public void onFailure(String errorMsg, Response response) {
-            DialogUtil.showError(context, errorMsg).show();
+            DialogUtil.getErrorDialog(context, errorMsg).show();
             binding.refreshLayout.finishLoad(false);
           }
 
@@ -152,6 +149,17 @@ public class ChatTypeActivity extends BaseActivity {
         binding.setNormal(hasFocus);
       }
     });
+    binding.navigation.setListener(new NavigationBar.INavigationBarOnClickListener() {
+      @Override
+      public void onBack() {
+        onBackPressed();
+      }
+
+      @Override
+      public void performAction(View view) {
+
+      }
+    });
   }
 
   private void record(Chat chat) {
@@ -163,7 +171,7 @@ public class ChatTypeActivity extends BaseActivity {
     new DialogueChatCase(chat).execute(new HttpSubscriber<Dialogue>(null) {
       @Override
       public void onFailure(String errorMsg, Response response) {
-        DialogUtil.showError(context, errorMsg).show();
+        DialogUtil.getErrorDialog(context, errorMsg).show();
       }
 
       @Override
@@ -210,6 +218,7 @@ public class ChatTypeActivity extends BaseActivity {
       chat.setLoc("");
       chat.setUserid(SessionMgr.getUser().getId());
       record(chat);
+      hideSoftInput(binding.etInfo);
     }
 
     public void onPlay(String fileName) {

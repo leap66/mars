@@ -114,7 +114,7 @@ public class ResetMobileActivity extends BaseActivity {
           new SmsSendCase(mobile, false).execute(new HttpSubscriber<Boolean>(context) {
             @Override
             public void onFailure(String errorMsg, Response data) {
-              DialogUtil.showError(context, errorMsg).show();
+              DialogUtil.getErrorDialog(context, errorMsg).show();
             }
 
             @Override

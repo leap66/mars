@@ -130,7 +130,7 @@ public class RegisterActivity extends BaseActivity {
         new RegisterCase(auth).execute(new HttpSubscriber<String>(context) {
           @Override
           public void onFailure(String errorMsg, Response response) {
-            DialogUtil.showError(RegisterActivity.this, errorMsg).show();
+            DialogUtil.getErrorDialog(RegisterActivity.this, errorMsg).show();
           }
 
           @Override

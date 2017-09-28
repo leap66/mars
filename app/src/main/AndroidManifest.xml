@@ -37,7 +37,7 @@
         <!-- 显示软键盘,并让布局压缩 -->
         <activity
             android:name=".presenter.chat.ChatTypeActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".presenter.chat.ChatVoiceActivity"/>
         <activity android:name=".presenter.auth.NavigationActivity"/>
         <activity android:name=".presenter.auth.activity.TextChatActivity"/>

@@ -13,6 +13,7 @@ public class TokenExpiredException extends IOException {
   private String message;
 
   public TokenExpiredException(int code, String message) {
+    super(message);
     this.code = code;
     this.message = message;
   }
