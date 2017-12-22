@@ -18,7 +18,7 @@
             type="android.support.v7.widget.RecyclerView.Adapter"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -38,97 +38,87 @@
             app:titleText="@string/chat_type_title"
             app:titleTextColor="@color/white"/>
 
-        <RelativeLayout
+        <com.leap.mini.widget.pullrefresh.DefaultRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_send"
+            android:layout_below="@+id/navigation"
+            app:header_drawable_bg="@mipmap/a09">
 
-            <Space
-                android:id="@+id/space"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"/>
-
-            <com.leap.mini.widget.pullrefresh.DefaultRefreshLayout
-                android:id="@+id/refresh_layout"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_rcy"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_above="@+id/ll_send"
-                android:layout_below="@+id/space"
-                app:header_drawable_bg="@mipmap/a09">
+                android:layout_height="match_parent"
+                app:adapter="@{adapter}"
+                app:layoutManager="LinearLayoutManager"/>
+        </com.leap.mini.widget.pullrefresh.DefaultRefreshLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/home_rcy"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:adapter="@{adapter}"
-                    app:layoutManager="LinearLayoutManager"/>
-            </com.leap.mini.widget.pullrefresh.DefaultRefreshLayout>
+        <LinearLayout
+            android:id="@+id/ll_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/paleGrey"
+            android:orientation="vertical">
+
+            <com.leap.mini.widget.cleartextfield.ClearEditText
+                android:id="@+id/et_info"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:hint="@string/chat_type_hint"
+                android:maxLines="1"
+                android:imeOptions="actionSend"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/charcoalGrey"
+                android:textColorHint="@color/silver"
+                android:textSize="15sp"/>
 
             <LinearLayout
-                android:id="@+id/ll_send"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/paleGrey"
-                android:orientation="vertical">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/paleGrey">
 
-                <com.leap.mini.widget.cleartextfield.ClearEditText
-                    android:id="@+id/et_info"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginRight="10dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:hint="@string/chat_type_hint"
-                    android:lines="1"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:singleLine="true"
-                    android:textColor="@color/charcoalGrey"
-                    android:textColorHint="@color/silver"
-                    android:textSize="15sp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/paleGrey">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@mipmap/voice_chat_0"
-                        android:contentDescription="@null"
-                        android:onClick="@{()->presenter.onVoice()}"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="-10dp"
-                    android:gravity="center"
-                    android:visibility="@{normal?View.GONE:View.VISIBLE}">
-
-                    <com.leap.mars.widget.audio.AudioRecorderButton
-                        android:id="@+id/btn_recorder"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/btn_recorder_narmal"
-                        android:drawableTop="@mipmap/voice_chat_0"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="@string/str_recorder_normal"
-                        android:textColor="@color/lipstick"
-                        android:textCursorDrawable="@mipmap/voice_chat_0"/>
-                </LinearLayout>
+                    android:background="@mipmap/voice_chat_0"
+                    android:contentDescription="@null"
+                    android:onClick="@{()->presenter.onVoice()}"/>
             </LinearLayout>
 
-        </RelativeLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="-10dp"
+                android:gravity="center"
+                android:visibility="@{normal?View.GONE:View.VISIBLE}">
+
+                <com.leap.mars.widget.audio.AudioRecorderButton
+                    android:id="@+id/btn_recorder"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/btn_recorder_narmal"
+                    android:drawableTop="@mipmap/voice_chat_0"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@string/str_recorder_normal"
+                    android:textColor="@color/lipstick"
+                    android:textCursorDrawable="@mipmap/voice_chat_0"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </layout>

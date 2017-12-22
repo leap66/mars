@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MarsApp"
@@ -33,7 +34,7 @@
         <activity android:name=".presenter.user.AppAboutActivity"/>
         <activity android:name=".presenter.user.AppSettingActivity"/>
         <activity android:name=".presenter.user.UserSettingActivity"/>
-
+        <activity android:name=".presenter.scan.QRScannerActivity"/>
         <!-- 显示软键盘,并让布局压缩 -->
         <activity
             android:name=".presenter.chat.ChatTypeActivity"

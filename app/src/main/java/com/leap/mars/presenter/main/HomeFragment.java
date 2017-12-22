@@ -9,19 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.leap.mars.R;
-import com.leap.mars.cmp.SessionMgr;
 import com.leap.mars.databinding.FragmentHomeBinding;
-import com.leap.mars.model.User;
-import com.leap.mars.network.auth.usecase.LoginCase;
+import com.leap.mars.presenter.auth.SplashActivity;
 import com.leap.mars.presenter.auth.activity.TextChatActivity;
 import com.leap.mars.presenter.base.BaseFragment;
 import com.leap.mars.presenter.chat.ChatTypeActivity;
-import com.leap.mini.model.network.Response;
-import com.leap.mini.net.HttpSubscriber;
-import com.leap.mini.util.DialogUtil;
-import com.leap.mini.util.ToastUtil;
-
-import java.util.Date;
+import com.leap.mars.presenter.scan.QRScannerActivity;
 
 /**
  * @author : ylwei
@@ -59,26 +52,10 @@ public class HomeFragment extends BaseFragment {
         intent = new Intent(context, ChatTypeActivity.class);
         break;
       case 2:
-        new LoginCase("13900001093", "123456").execute(new HttpSubscriber<String>(context) {
-          @Override
-          public void onFailure(String errorMsg, Response response) {
-            DialogUtil.getErrorDialog(context, errorMsg).show();
-          }
-
-          @Override
-          public void onSuccess(Response<String> response) {
-            User user = new User();
-            user.setId(response.getData());
-            user.setBirth(new Date());
-            user.setCreated(new Date());
-            user.setLastModified(new Date());
-            SessionMgr.updateUser(user);
-            ToastUtil.showSuccess(context, response.getData());
-          }
-        });
-        return;
+        intent = new Intent(context, ChatTypeActivity.class);
+        break;
       case 3:
-        intent = new Intent(context, TextChatActivity.class);
+        intent = new Intent(context, QRScannerActivity.class);
         break;
       case 4:
         intent = new Intent(context, TextChatActivity.class);
@@ -90,7 +67,7 @@ public class HomeFragment extends BaseFragment {
         intent = new Intent(context, TextChatActivity.class);
         break;
       case 7:
-        intent = new Intent(context, TextChatActivity.class);
+        intent = new Intent(context, SplashActivity.class);
         break;
       }
       startActivity(intent);

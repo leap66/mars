@@ -3,6 +3,7 @@ package com.leap.mars;
 import android.app.Application;
 
 import com.leap.mars.cmp.SessionMgr;
+import com.leap.mini.mgr.ContextMgr;
 import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.mgr.TokenMgr;
 import com.leap.mini.mgr.logger.CrashHandler;
@@ -24,6 +25,7 @@ public class MarsApp extends Application {
   public void onCreate() {
     super.onCreate();
     instance = this;
+    ContextMgr.init(instance);
     // 初始化网络组件
     ApiClient.init(getApplicationContext(), BuildConfig.SERVER_URL);
     // 初始化异常捕获组件
