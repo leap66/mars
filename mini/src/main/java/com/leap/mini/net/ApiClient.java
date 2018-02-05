@@ -1,8 +1,7 @@
 package com.leap.mini.net;
 
-import android.content.Context;
-
 import com.leap.mini.R;
+import com.leap.mini.mgr.ContextMgr;
 import com.leap.mini.mgr.TokenMgr;
 import com.leap.mini.net.network.subscriber.ApiException;
 import com.leap.mini.net.network.subscriber.NullOnEmptyConverterFactory;
@@ -31,33 +30,16 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 public class ApiClient {
   private static String baseUrl;
   private static Retrofit platformClient;
-  private static Object mContext;
 
   // 拦截器 处理请求的status code
   private static Interceptor requestErrorInterceptor = new Interceptor() {
     @Override
     public Response intercept(Chain chain) throws IOException {
-      if (!NetworkUtil.isConnected((Context) mContext)) {
-        throw new ApiException(0, ((Context) mContext).getString(R.string.network_err_0));
-      }
+      if (!NetworkUtil.isConnected(ContextMgr.getInstance()))
+        throw new ApiException(0, ContextMgr.getInstance().getString(R.string.network_err_0));
       Request request = chain.request();
       Response response = chain.proceed(request);
-      ApiException e = null;
-      if (401 == response.code()) {
-        throw new TokenExpiredException(401,
-            ((Context) mContext).getString(R.string.network_request_err_401));
-      } else if (403 == response.code()) {
-        e = new ApiException(403, ((Context) mContext).getString(R.string.network_request_err_403));
-      } else if (503 == response.code()) {
-        e = new ApiException(503, ((Context) mContext).getString(R.string.network_request_err_503));
-      } else if (500 == response.code()) {
-        e = new ApiException(500, ((Context) mContext).getString(R.string.network_request_err_500));
-      } else if (404 == response.code()) {
-        e = new ApiException(404, ((Context) mContext).getString(R.string.network_request_err_404));
-      }
-      if (!IsEmpty.object(e)) {
-        throw e;
-      }
+      parser(response);
       return response;
     }
   };
@@ -107,9 +89,31 @@ public class ApiClient {
     return platformClient;
   }
 
-  public static void init(Context context, String baseUrl) {
+  public static void init(String baseUrl) {
     ApiClient.baseUrl = baseUrl;
-    ApiClient.mContext = context;
+  }
+
+  private static void parser(Response response) throws IOException {
+    ApiException e = null;
+    if (401 == response.code()) {
+      throw new TokenExpiredException(401,
+          ContextMgr.getInstance().getString(R.string.network_request_err_401));
+    } else if (403 == response.code()) {
+      e = new ApiException(403,
+          ContextMgr.getInstance().getString(R.string.network_request_err_403));
+    } else if (503 == response.code()) {
+      e = new ApiException(503,
+          ContextMgr.getInstance().getString(R.string.network_request_err_503));
+    } else if (500 == response.code()) {
+      e = new ApiException(500,
+          ContextMgr.getInstance().getString(R.string.network_request_err_500));
+    } else if (404 == response.code()) {
+      e = new ApiException(404,
+          ContextMgr.getInstance().getString(R.string.network_request_err_404));
+    }
+    if (!IsEmpty.object(e)) {
+      throw e;
+    }
   }
 
 }

@@ -3,7 +3,7 @@ package com.leap.mars.model;
 /**
  * @author : ylwei
  * @time : 2017/9/6
- * @description :
+ * @description : 认证
  */
 public class Auth {
   private String id;// 唯一标识符

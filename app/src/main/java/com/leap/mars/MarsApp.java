@@ -25,15 +25,16 @@ public class MarsApp extends Application {
   public void onCreate() {
     super.onCreate();
     instance = this;
-    ContextMgr.init(instance);
+    ContextMgr.init(this);
     // 初始化网络组件
-    ApiClient.init(getApplicationContext(), BuildConfig.SERVER_URL);
+    ApiClient.init(BuildConfig.SERVER_URL);
     // 初始化异常捕获组件
     CrashHandler.getInstance().init();
     // 初始化缓存组件
-    StorageMgr.init(this);
+    StorageMgr.init();
     // 初始化Token组件
     TokenMgr.init();
+    // 初始化Session组件
     SessionMgr.init();
   }
 

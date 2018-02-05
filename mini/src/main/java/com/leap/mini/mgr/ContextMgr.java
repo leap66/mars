@@ -8,17 +8,17 @@ import android.content.Context;
  * </> Created by ylwei on 2017/12/14.
  */
 public class ContextMgr {
-  private static Context instance;
+  private static Object instance;
 
   public static Context getInstance() {
     if (null == instance)
       throw new NullPointerException("you should init first");
-    return instance;
+    return (Context) instance;
   }
 
-  public static void init(Context mInstance) {
-    if (null == mInstance)
+  public static void init(Context context) {
+    if (null == context)
       throw new NullPointerException("context is NULL");
-    instance = mInstance;
+    instance = context.getApplicationContext();
   }
 }

@@ -16,8 +16,8 @@ public class StorageMgr {
   public static String LEVEL_USER = "user";// 用户级别（必需登录后使用）
   public static String LEVEL_GLOBAL = "global";// 全局级别
 
-  public static void init(Context context) {
-    storage = context.getSharedPreferences("mini", Context.MODE_PRIVATE);
+  public static void init() {
+    storage = ContextMgr.getInstance().getSharedPreferences("mini", Context.MODE_PRIVATE);
   }
 
   // 设置缓存信息

@@ -7,30 +7,19 @@ package com.leap.mars.config;
  */
 public class AppConfig {
 
+  // 服务器地址
   public static final String SERVER_URL = "http://172.17.3.108:8888/";
 
-  // Api地址
-  // public static final String API_ENDPOINT =
-  // "https://auth-test.1000sails.com/dpos-auth-web/s/";
-  // public static final String API_ENDPOINT =
-  // "http://172.17.2.145:8080/dpos-auth-web/s/";
-  // public static final String API_ENDPOINT =
-  // "http://172.17.4.90:8080/dpos-auth-web/s/";
-  public static final String WIFI_CONFIG_URL = "http://dm.2dupay.com/wifi-config/wifiConfig.html";
-
-  // 当前数据库版本
-  public static final int DATABASE_VERSION = 1;
-
+  // TTS转换ID
   public static final String TTS_APPID = "58ac030b";
 
-  public static final String DATA = "data";
-  public static final String SHOP = "shop";
-  public static final String PAYMENT = "payment";
-  public static final String MOBILE = "mobile";
+  // 本地聊天记录保存
+  public static final String LOCAL_CHAT_TRACE = "chatTypeStorage";
 
+  // Intent.action 界面跳转参数传递
+  public static final String DATA = "intent_data";
+  public static final String MOBILE = "intent_mobile";
 
-  public static final String CHAP_TYPE_STORAGE = "chatTypeStorage";
+  public static final String KEY_SESSION = "key_session";
 
-  // @Deprecated
-  // public static final boolean isDebug = false;
 }

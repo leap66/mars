@@ -1,31 +1,30 @@
 package com.leap.mars.cmp;
 
+import com.leap.mars.config.AppConfig;
 import com.leap.mars.model.User;
 import com.leap.mars.network.user.usecase.UserGetCase;
 import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.mgr.TokenMgr;
-import com.leap.mini.net.HttpSubscriber;
 import com.leap.mini.model.network.Response;
+import com.leap.mini.net.HttpSubscriber;
 import com.leap.mini.util.IsEmpty;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.leap.mini.mgr.StorageMgr.LEVEL_GLOBAL;
-
 /**
- * Created by fhx on 16/11/10. 封装Session
+ * 会话消息管理
+ * <p>
+ * </> Created by weiyl on 17/11/10. 封装Session
  */
 public class SessionMgr {
-  // key
-  private static String KEY_SESSION = "session";
   private static User user;
   private static Timer timer;
 
   public static void init() {
     timer = new Timer(true);
     timer.schedule(new Task(), 1000, 1000 * 60 * 60);
-    user = StorageMgr.get(KEY_SESSION, User.class, LEVEL_GLOBAL);
+    user = StorageMgr.get(AppConfig.KEY_SESSION, User.class, StorageMgr.LEVEL_GLOBAL);
     if (IsEmpty.object(user)) {
       user = new User();
     }
@@ -34,7 +33,7 @@ public class SessionMgr {
   // 更新用户
   public static void updateUser(User user) {
     SessionMgr.user = user;
-    StorageMgr.set(KEY_SESSION, user, LEVEL_GLOBAL);
+    StorageMgr.set(AppConfig.KEY_SESSION, user, StorageMgr.LEVEL_GLOBAL);
   }
 
   public static User getUser() {

@@ -68,7 +68,7 @@ public class ChatTypeActivity extends BaseActivity {
   @Override
   protected void loadData(Bundle savedInstanceState) {
     List<Dialogue> temp = GsonUtil.parseList(
-        StorageMgr.get(AppConfig.CHAP_TYPE_STORAGE, StorageMgr.LEVEL_USER),
+        StorageMgr.get(AppConfig.LOCAL_CHAT_TRACE, StorageMgr.LEVEL_USER),
         new TypeToken<List<Dialogue>>() {
         }.getType());
     if (IsEmpty.list(temp)) {
@@ -192,7 +192,7 @@ public class ChatTypeActivity extends BaseActivity {
 
   @Override
   protected void onDestroy() {
-    StorageMgr.set(AppConfig.CHAP_TYPE_STORAGE, dialogueList, StorageMgr.LEVEL_USER);
+    StorageMgr.set(AppConfig.LOCAL_CHAT_TRACE, dialogueList, StorageMgr.LEVEL_USER);
     super.onDestroy();
   }
 
