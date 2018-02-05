@@ -32,14 +32,12 @@ import com.leap.mini.widget.validator.rules.NotEmptyRule;
 
 public class ResetMobileActivity extends BaseActivity {
   private ActivityResetMobileBinding binding;
-  private Context context;
   private Validator smsValidator;
   private Validator validator;
 
   @Override
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_reset_mobile);
-    context = this;
     binding.setPresenter(new Presenter());
   }
 

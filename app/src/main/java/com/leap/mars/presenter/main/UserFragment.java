@@ -26,13 +26,11 @@ import com.leap.mini.net.HttpSubscriber;
  * @description :
  */
 public class UserFragment extends BaseFragment {
-  private Context context;
 
   @Override
   protected View initComponent(LayoutInflater inflater, ViewGroup container) {
     FragmentMineBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine,
         container, false);
-    context = getContext();
     binding.setPresenter(new Presenter());
     return binding.getRoot();
   }

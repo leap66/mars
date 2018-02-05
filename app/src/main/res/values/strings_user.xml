@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- 我的 -->
+    <string name="user_robot_name">小幕</string>
+    <string name="user_navigation">玩法</string>
+    <string name="user_setting">个人资料设置</string>
+    <string name="user_robot_setting">小幕资料设置</string>
+    <string name="user_app_setting">设置</string>
+    <string name="user_about">关于</string>
+    <string name="user_quit">安全退出</string>
+
+    <!-- 头像 -->
+    <string name="user_photo_title">个人头像</string>
+    <string name="user_photo_tack">拍照</string>
+    <string name="user_photo_select">从手机相册选择</string>
+    <string name="user_photo_save">保存图片</string>
+
+</resources>

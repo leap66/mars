@@ -17,27 +17,26 @@ import com.gyf.barlibrary.ImmersionBar;
  */
 public abstract class BaseFragment extends Fragment {
   protected View mRootView;
-  protected Context mContext;
   protected boolean mIsVisible;
   protected boolean mIsPrepare;
   protected boolean mIsImmersion;
   protected ImmersionBar mStatusBar;
+  protected Context context;
 
   @Override
   public void onAttach(Context context) {
     super.onAttach(context);
-    this.mContext = context;
+    this.context = context;
   }
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                           @Nullable Bundle savedInstanceState) {
+      @Nullable Bundle savedInstanceState) {
     if (mRootView != null) {
       ViewGroup parent = (ViewGroup) mRootView.getParent();
-      if (parent != null) {
+      if (parent != null)
         parent.removeView(mRootView);
-      }
     } else {
       mRootView = initComponent(inflater, container);
       createEventHandlers();
@@ -54,18 +53,15 @@ public abstract class BaseFragment extends Fragment {
       mIsImmersion = true;
       onLazyLoad();
     } else {
-      if (isStatusBarEnabled()) {
+      if (isStatusBarEnabled())
         initStatusBar();
-      }
     }
-
-    if (statusBarView() != null) {
+    if (statusBarView() != null)
       ImmersionBar.setTitleBar(getActivity(), statusBarView());
-    }
   }
 
   protected void initStatusBar() {
-    mStatusBar = ImmersionBar.with(getActivity(),this);
+    mStatusBar = ImmersionBar.with(getActivity(), this);
     if (isDarkFont())
       mStatusBar.statusBarDarkFont(true, 0.2f);
     mStatusBar.init();
@@ -86,7 +82,6 @@ public abstract class BaseFragment extends Fragment {
   @Override
   public void setUserVisibleHint(boolean isVisibleToUser) {
     super.setUserVisibleHint(isVisibleToUser);
-
     if (getUserVisibleHint()) {
       mIsVisible = true;
       onVisibled();
@@ -101,18 +96,13 @@ public abstract class BaseFragment extends Fragment {
   }
 
   protected void onInvisibled() {
-
   }
 
   private void onLazyLoad() {
-    if (mIsVisible && mIsPrepare) {
+    if (mIsVisible && mIsPrepare)
       mIsPrepare = false;
-    }
-    if (mIsVisible && mIsImmersion && isStatusBarEnabled()) {
+    if (mIsVisible && mIsImmersion && isStatusBarEnabled())
       initStatusBar();
-      // if (statusBarView() != null)
-      // ImmersionBar.setTitleBar(getActivity(), statusBarView());
-    }
   }
 
   protected abstract View initComponent(LayoutInflater inflater, ViewGroup container);
@@ -131,5 +121,12 @@ public abstract class BaseFragment extends Fragment {
     super.onHiddenChanged(hidden);
     if (!hidden && mStatusBar != null)
       mStatusBar.init();
+  }
+
+  @Override
+  public void onDestroy() {
+    if (mStatusBar != null)
+      mStatusBar.destroy();
+    super.onDestroy();
   }
 }

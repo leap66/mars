@@ -1,6 +1,5 @@
 package com.leap.mars.presenter.auth;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -37,7 +36,6 @@ import com.leap.mini.widget.validator.rules.NotEmptyRule;
  */
 public class LoginActivity extends BaseActivity {
   private ActivityAuthLoginBinding binding;
-  private Context context;
   private String mobile;
   private boolean isVisible;
   private Validator validator;
@@ -48,7 +46,6 @@ public class LoginActivity extends BaseActivity {
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_auth_login);
     binding.setPresenter(new Presenter());
-    context = this;
   }
 
   @Override

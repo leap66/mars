@@ -36,7 +36,6 @@ import com.leap.mini.widget.validator.rules.NotEmptyRule;
  */
 public class ResetPwdActivity extends BaseActivity {
   private ActivityResetPwdBinding binding;
-  private Context context;
   private Validator mValidator;
   private Validator smsValidator;
   private boolean isVisible;
@@ -44,7 +43,6 @@ public class ResetPwdActivity extends BaseActivity {
   @Override
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_reset_pwd);
-    context = this;
     binding.setPresenter(new Presenter());
   }
 

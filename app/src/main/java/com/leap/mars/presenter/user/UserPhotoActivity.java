@@ -1,13 +1,13 @@
 package com.leap.mars.presenter.user;
 
-import android.content.Intent;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
 import com.leap.mars.R;
 import com.leap.mars.cmp.SessionMgr;
-import com.leap.mars.databinding.ActivityUserSettingBinding;
+import com.leap.mars.databinding.ActivityUserPhotoBinding;
 import com.leap.mars.presenter.base.BaseActivity;
 import com.leap.mini.widget.NavigationBar;
 
@@ -16,12 +16,12 @@ import com.leap.mini.widget.NavigationBar;
  * <p>
  * </> Created by weiyaling on 2017/8/3.
  */
-public class UserSettingActivity extends BaseActivity {
-  private ActivityUserSettingBinding binding;
+public class UserPhotoActivity extends BaseActivity {
+  private ActivityUserPhotoBinding binding;
 
   @Override
   protected void initComponent() {
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_user_setting);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_user_photo);
     binding.setPresenter(new Presenter());
     binding.setItem(SessionMgr.getUser().getName());
   }
@@ -33,7 +33,6 @@ public class UserSettingActivity extends BaseActivity {
 
   @Override
   protected void createEventHandlers() {
-    binding.navigation.addAction(new NavigationBar.ImageAction(R.mipmap.aaa1, 1));
     binding.navigation.setListener(new NavigationBar.INavigationBarOnClickListener() {
       @Override
       public void onBack() {
@@ -62,25 +61,5 @@ public class UserSettingActivity extends BaseActivity {
    */
   public class Presenter {
 
-    /**
-     * 修改头像
-     */
-    public void onPhoto() {
-      startActivity(new Intent(context, UserPhotoActivity.class));
-    }
-
-    /**
-     * 重置密码
-     */
-    public void onPwd() {
-      startActivity(new Intent(context, ResetPwdActivity.class));
-    }
-
-    /**
-     * 更新手机号
-     */
-    public void onMobile() {
-      startActivity(new Intent(context, ResetMobileActivity.class));
-    }
   }
 }

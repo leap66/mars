@@ -22,12 +22,10 @@ import com.leap.mars.presenter.scan.QRScannerActivity;
  * @description :
  */
 public class HomeFragment extends BaseFragment {
-  private Context context;
   private FragmentHomeBinding binding;
 
   @Override
   protected View initComponent(LayoutInflater inflater, ViewGroup container) {
-    context = getContext();
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
     binding.setPresenter(new Presenter());
     return binding.getRoot();

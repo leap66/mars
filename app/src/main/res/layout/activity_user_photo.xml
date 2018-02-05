@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.leap.mars.presenter.user.UserPhotoActivity.Presenter"/>
+
+        <variable
+            name="item"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_65"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/immersion_bar"
+            style="@style/immersion_bar_white_style"/>
+
+        <com.leap.mini.widget.NavigationBar
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:bgColor="@color/black_65"
+            app:navigationIcon="@mipmap/ic_title_back"
+            app:titleSize="@dimen/title"
+            app:titleText="@string/user_photo_title"
+            app:titleTextColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@mipmap/a09"/>
+    </LinearLayout>
+</layout>

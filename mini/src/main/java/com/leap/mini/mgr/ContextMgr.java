@@ -12,7 +12,7 @@ public class ContextMgr {
 
   public static Context getInstance() {
     if (null == instance)
-      throw new NullPointerException("you should init first");
+      throw new NullPointerException("you should init ContextMgr first");
     return (Context) instance;
   }
 

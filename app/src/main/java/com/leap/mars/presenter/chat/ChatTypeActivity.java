@@ -1,6 +1,5 @@
 package com.leap.mars.presenter.chat;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -28,6 +27,7 @@ import com.leap.mini.net.HttpSubscriber;
 import com.leap.mini.util.DialogUtil;
 import com.leap.mini.util.GsonUtil;
 import com.leap.mini.util.IsEmpty;
+import com.leap.mini.util.KeyBoardUtil;
 import com.leap.mini.util.ToastUtil;
 import com.leap.mini.widget.NavigationBar;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
@@ -46,7 +46,6 @@ import java.util.UUID;
  */
 public class ChatTypeActivity extends BaseActivity {
   private ActivityChatTypeBinding binding;
-  private Context context;
   private List<Dialogue> dialogueList;
   private SingleTypeAdapter<Dialogue> adapter;
 
@@ -56,7 +55,6 @@ public class ChatTypeActivity extends BaseActivity {
     binding.setPresenter(new Presenter());
     binding.setNormal(true);
     dialogueList = new ArrayList<>();
-    context = this;
     loadRcy();
   }
 
@@ -218,7 +216,7 @@ public class ChatTypeActivity extends BaseActivity {
       chat.setLoc("");
       chat.setUserid(SessionMgr.getUser().getId());
       record(chat);
-      hideSoftInput(binding.etInfo);
+      KeyBoardUtil.keyShow(binding.etInfo, false);
     }
 
     public void onPlay(String fileName) {

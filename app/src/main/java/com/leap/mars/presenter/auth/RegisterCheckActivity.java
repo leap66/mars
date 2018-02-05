@@ -1,6 +1,5 @@
 package com.leap.mars.presenter.auth;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -31,14 +30,12 @@ import com.leap.mini.widget.validator.rules.NotEmptyRule;
  */
 public class RegisterCheckActivity extends BaseActivity {
   private ActivityRegisterCheckBinding binding;
-  private Context context;
   private Validator mValidator;
   private Validator smsValidator;
 
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_register_check);
     binding.setPresenter(new Presenter());
-    context = this;
   }
 
   @Override

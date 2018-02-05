@@ -8,7 +8,6 @@ import com.leap.mini.mgr.TokenMgr;
 import com.leap.mini.util.ToastUtil;
 
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -16,12 +15,10 @@ import android.os.Handler;
 
 public class SplashActivity extends BaseActivity {
   private ActivitySplashBinding binding;
-  private Context context;
 
   @Override
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-    context = this;
   }
 
   @Override

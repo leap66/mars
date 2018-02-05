@@ -30,7 +30,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"http://172.17.3.108:8088/leap/\"")
+        buildConfigField("String", "SERVER_URL", System.getenv("SERVER_URL") ?: "\"http://172.17.6.39:8088/leap/\"")
         buildConfigField("String", "AGREEMENT_URL", System.getenv("SERVER_URL") ?: "\"http://www.baidu.com\"")
         // 192.168.1.109  172.17.3.108
         println("------------------环境变量--------------")

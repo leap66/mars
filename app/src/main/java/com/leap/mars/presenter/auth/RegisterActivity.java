@@ -1,5 +1,12 @@
 package com.leap.mars.presenter.auth;
 
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
+import android.os.Bundle;
+import android.text.InputType;
+import android.view.KeyEvent;
+import android.view.View;
+
 import com.leap.mars.R;
 import com.leap.mars.config.AppConfig;
 import com.leap.mars.config.PrecisionConfig;
@@ -19,14 +26,6 @@ import com.leap.mini.widget.validator.Validator;
 import com.leap.mini.widget.validator.rules.MinLengthRule;
 import com.leap.mini.widget.validator.rules.NotEmptyRule;
 
-import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.text.InputType;
-import android.view.KeyEvent;
-import android.view.View;
-
 /**
  * 注册界面
  * <p>
@@ -35,7 +34,6 @@ import android.view.View;
 
 public class RegisterActivity extends BaseActivity {
   private ActivityRegisterBinding binding;
-  private Context context;
   private Validator mValidator;
   private boolean isVisible;
   private Auth auth;
@@ -44,7 +42,6 @@ public class RegisterActivity extends BaseActivity {
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(RegisterActivity.this, R.layout.activity_register);
     binding.setPresenter(new Presenter());
-    context = this;
   }
 
   @Override

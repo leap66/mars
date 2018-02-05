@@ -7,13 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.leap.mars.R;
 import com.leap.mars.util.ShortcutMgr;
 import com.leap.mini.net.network.event.AuthEvent;
+import com.leap.mini.util.KeyBoardUtil;
 import com.leap.mini.util.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,10 +28,12 @@ import org.greenrobot.eventbus.ThreadMode;
 public abstract class BaseActivity extends AppCompatActivity {
   private boolean keyboardAutoHide = true;
   protected ImmersionBar mStatusBar;
+  protected Context context;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    context = this;
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     initComponent();
     loadData(savedInstanceState);
@@ -43,12 +45,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   protected void initStatusBar() {
     mStatusBar = ImmersionBar.with(this);
-    if (statusBarView() != null) {
+    if (statusBarView() != null)
       mStatusBar.statusBarView(statusBarView());
-    }
-    if (isDarkFont()) {
+    if (isDarkFont())
       mStatusBar.statusBarDarkFont(true, 0.2f);
-    }
     if (keyboardEnable())
       mStatusBar.keyboardEnable(true);
     mStatusBar.init();
@@ -81,12 +81,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected abstract void loadData(Bundle savedInstanceState);
 
   /**
-   * 在onDestroy中销毁
-   */
-  protected void destroy() {
-  }
-
-  /**
    * 界面事件响应
    */
   protected void createEventHandlers() {
@@ -106,14 +100,12 @@ public abstract class BaseActivity extends AppCompatActivity {
   public boolean dispatchTouchEvent(MotionEvent ev) {
     if (ev.getAction() == MotionEvent.ACTION_DOWN) {
       View v = getCurrentFocus();
-      if (isEdt(v, ev) && keyboardAutoHide) {
-        hideSoftInput(v);
-      }
+      if (isEdt(v, ev) && keyboardAutoHide)
+        KeyBoardUtil.keyShow(v, false);
       return super.dispatchTouchEvent(ev);
     }
-    if (getWindow().superDispatchTouchEvent(ev)) {
+    if (getWindow().superDispatchTouchEvent(ev))
       return getWindow().superDispatchTouchEvent(ev);
-    }
     return onTouchEvent(ev);
   }
 
@@ -135,19 +127,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     return false;
   }
 
-  /**
-   * 隐藏软键盘
-   */
-  protected void hideSoftInput(View view) {
-    InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    im.hideSoftInputFromWindow(view.getWindowToken(), 0);
-  }
-
   @Override
   protected void onDestroy() {
-    super.onDestroy();
+    if (mStatusBar != null)
+      mStatusBar.destroy();
     EventBus.getDefault().unregister(this);
-    destroy();
+    super.onDestroy();
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)

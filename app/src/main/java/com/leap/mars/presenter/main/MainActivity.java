@@ -1,6 +1,5 @@
 package com.leap.mars.presenter.main;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,13 +24,11 @@ public class MainActivity extends BaseActivity {
   private Stack<View> viewList;
   public int currentIndex;
   private ExitHelper.TwicePressHolder mExitHelper;
-  private Context context;
 
   @Override
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
     binding.setPresenter(new Presenter());
-    context = this;
     fragmentList = new ArrayList<>();
     viewList = new Stack<>();
   }

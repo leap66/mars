@@ -18,13 +18,11 @@ import android.view.View;
 
 public class AppSettingActivity extends BaseActivity {
   private ActivityAppSettingBinding binding;
-  private Context context;
 
   @Override
   protected void initComponent() {
     binding = DataBindingUtil.setContentView(this, R.layout.activity_app_setting);
     binding.setPresenter(new Presenter());
-    context = this;
   }
 
   @Override
