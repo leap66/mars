@@ -1,5 +1,6 @@
-package com.leap.mars.model;
+package com.leap.mars.model.chat;
 
+import com.leap.mars.model.Voice;
 import com.leap.mini.model.base.BEntity;
 
 import java.util.Date;

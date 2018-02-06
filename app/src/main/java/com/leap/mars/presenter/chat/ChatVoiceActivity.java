@@ -2,7 +2,7 @@ package com.leap.mars.presenter.chat;
 
 import android.os.Bundle;
 
-import com.leap.mars.model.Dialogue;
+import com.leap.mars.model.chat.Dialogue;
 import com.leap.mars.presenter.base.BaseActivity;
 
 import java.util.List;

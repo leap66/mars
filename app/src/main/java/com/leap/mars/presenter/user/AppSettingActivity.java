@@ -5,7 +5,6 @@ import com.leap.mars.databinding.ActivityAppSettingBinding;
 import com.leap.mars.presenter.base.BaseActivity;
 import com.leap.mini.widget.NavigationBar;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;

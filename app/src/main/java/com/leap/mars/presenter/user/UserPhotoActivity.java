@@ -1,6 +1,5 @@
 package com.leap.mars.presenter.user;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;

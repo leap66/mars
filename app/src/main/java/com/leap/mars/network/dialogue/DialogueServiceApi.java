@@ -1,7 +1,7 @@
 package com.leap.mars.network.dialogue;
 
-import com.leap.mars.model.Chat;
-import com.leap.mars.model.Dialogue;
+import com.leap.mars.model.chat.Chat;
+import com.leap.mars.model.chat.Dialogue;
 import com.leap.mini.model.network.Response;
 
 import java.util.List;

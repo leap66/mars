@@ -1,6 +1,6 @@
 package com.leap.mars.network.dialogue.usecase;
 
-import com.leap.mars.model.Chat;
+import com.leap.mars.model.chat.Chat;
 import com.leap.mars.network.dialogue.DialogueServiceApi;
 import com.leap.mini.net.BaseUseCase;
 

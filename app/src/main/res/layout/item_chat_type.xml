@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.leap.mars.model.Dialogue"/>
+            type="com.leap.mars.model.chat.Dialogue"/>
 
         <variable
             name="presenter"

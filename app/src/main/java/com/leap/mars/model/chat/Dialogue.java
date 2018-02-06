@@ -1,4 +1,4 @@
-package com.leap.mars.model;
+package com.leap.mars.model.chat;
 
 import com.leap.mini.model.base.BEntity;
 

@@ -12,14 +12,12 @@ import com.leap.mars.R;
 import com.leap.mars.cmp.SessionMgr;
 import com.leap.mars.config.AppConfig;
 import com.leap.mars.databinding.ActivityChatTypeBinding;
-import com.leap.mars.model.Chat;
-import com.leap.mars.model.Dialogue;
-import com.leap.mars.model.Voice;
+import com.leap.mars.model.chat.Chat;
+import com.leap.mars.model.chat.Dialogue;
 import com.leap.mars.network.dialogue.usecase.DialogueChatCase;
 import com.leap.mars.network.dialogue.usecase.DialogueQueryCase;
 import com.leap.mars.presenter.base.BaseActivity;
-import com.leap.mars.util.ConvertUtil;
-import com.leap.mars.util.FileUtil;
+import com.leap.mars.presenter.chat.widget.ChatUtil;
 import com.leap.mars.widget.audio.AudioListener;
 import com.leap.mini.mgr.StorageMgr;
 import com.leap.mini.model.network.Response;
@@ -32,12 +30,10 @@ import com.leap.mini.util.ToastUtil;
 import com.leap.mini.widget.NavigationBar;
 import com.leap.mini.widget.pullrefresh.base.layout.BaseHeaderView;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author : ylwei
@@ -89,21 +85,7 @@ public class ChatTypeActivity extends BaseActivity {
     binding.btnRecorder.setAudioListener(new AudioListener() {
       @Override
       public void onFinish(int seconds, String filePath) throws IOException {
-        Voice voice = new Voice();
-        voice.setId(UUID.randomUUID().toString());
-        voice.setUserId(SessionMgr.getUser().getId());
-        voice.setAsk(true);
-        File file = new File(filePath);
-        voice.setCode(FileUtil.loadFile(file));
-        voice.setLen(file.length());
-        voice.setName(filePath);
-        voice.setFormat("amr");
-        Chat chat = new Chat();
-        chat.setUserid(SessionMgr.getUser().getId());
-        chat.setTime(new Date());
-        chat.setVoice(voice);
-        chat.setInfo("语音文件请求");
-        record(chat);
+        record(ChatUtil.fromVoice(filePath));
       }
     });
     binding.refreshLayout.setOnRefreshListener(new BaseHeaderView.OnRefreshListener() {
@@ -161,7 +143,7 @@ public class ChatTypeActivity extends BaseActivity {
   }
 
   private void record(Chat chat) {
-    Dialogue dialogue = ConvertUtil.VoiceToB(chat);
+    Dialogue dialogue = ChatUtil.VoiceToB(chat);
     dialogueList.add(dialogue);
     adapter.add(dialogue);
     binding.etInfo.setText("");
@@ -209,13 +191,7 @@ public class ChatTypeActivity extends BaseActivity {
       String etInfo = binding.etInfo.getText().toString().trim();
       if (IsEmpty.string(etInfo))
         return;
-      Chat chat = new Chat();
-      chat.setId(UUID.randomUUID().toString());
-      chat.setInfo(etInfo);
-      chat.setTime(new Date());
-      chat.setLoc("");
-      chat.setUserid(SessionMgr.getUser().getId());
-      record(chat);
+      record(ChatUtil.fromInfo(etInfo));
       KeyBoardUtil.keyShow(binding.etInfo, false);
     }
 
